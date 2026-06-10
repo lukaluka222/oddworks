@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>変なの研究所 — ODD WORKS</title>
+<meta name="description" content="役に立つかもしれないし、立たないかもしれない。変なものをガチで作っています。ロボット犬・明晰夢・不登校伴走サービス・からくり箪笥。変なの研究所 / ODD WORKS">
+<meta property="og:title" content="変なの研究所 — ODD WORKS">
+<meta property="og:description" content="役に立つかもしれないし、立たないかもしれない。変なものをガチで作っています。">
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Silkscreen&family=Noto+Sans+JP:wght@300;400;500&family=Share+Tech+Mono&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --em:#00c878;--em2:#00a85a;--em3:#80ffbb;
+  --day-bg:#f4faf6;--day-ink:#081a10;--day-mid:#3a6a4a;
+  --day-bdr:rgba(20,100,50,.12);--day-card:#fff;--day-lite:#5a8a6a;
+  --d-bg:#080004;--d-red:#ff1e46;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;background:#0a2e1e;}
+html,body{overflow-x:hidden;padding-bottom:0;margin-bottom:0;}
+body{font-family:'Noto Sans JP',sans-serif;background:#0a2e1e;color:#e0fff0;overflow-x:hidden;cursor:none;transition:color .3s ease;}
+@media(pointer:coarse){body{cursor:auto;}#cr,#cd{display:none!important;}}
+body.day{color:var(--day-ink);}
+body.danger{background:var(--d-bg)!important;color:#ffd0d8;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.68' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.026'/%3E%3C/svg%3E");background-size:200px;mix-blend-mode:multiply;}
+#cr{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--em);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+#cd{position:fixed;width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(0,200,120,.4);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .15s;}
+#nav{position:fixed;top:0;left:0;width:100%;z-index:500;display:flex;align-items:center;justify-content:center;padding:0 2.4rem;height:56px;flex-wrap:nowrap;overflow:visible;background:rgba(8,36,22,1);backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,200,120,.14);transition:background .4s;}
+#subnav{position:sticky;top:0;left:0;width:100%;z-index:500;display:flex;align-items:center;justify-content:center;padding:0 2.4rem;height:56px;flex-wrap:nowrap;overflow:visible;background:rgba(8,36,22,1);backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,200,120,.14);transition:background .4s;}
+
+
+body.danger #nav{background:rgba(8,0,4,.92);border-bottom-color:rgba(255,30,70,.15);}
+.nav-logo{font-family:'DotGothic16',monospace;font-size:.78rem;letter-spacing:.1em;color:rgba(0,220,130,.6);transition:color .4s;line-height:1;display:flex;align-items:center;gap:.5rem;cursor:pointer;position:absolute;left:2.4rem;white-space:nowrap;}
+body.day .nav-logo{color:var(--em2);}
+body.danger .nav-logo{color:rgba(255,80,80,.7);}
+.nav-links{display:flex;gap:2rem;list-style:none;flex-wrap:nowrap;white-space:nowrap;position:absolute;left:50%;transform:translateX(-50%);overflow:visible;}
+.nav-links a{font-family:'Share Tech Mono',monospace;font-size:.75rem;letter-spacing:.22em;color:rgba(0,220,130,.45);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--em);}
+body.day .nav-links a{color:rgba(0,180,100,.8);opacity:1;}
+body.day .nav-links a:hover{color:var(--em2);opacity:1;}
+body.danger .nav-links a{color:rgba(255,150,150,.35);}
+.nav-r{display:none;}
+.ndot{width:6px;height:6px;border-radius:50%;background:var(--em);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+.sw{max-width:1100px;margin:0 auto;padding:0 1.5rem;}
+section{padding:4rem 0;}
+@keyframes ecin{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes din{from{opacity:0}to{opacity:1}}
+.rev{animation:ecin .6s ease both;}
+.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}
+.slbl{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.3em;color:var(--em2);opacity:.6;display:block;margin-bottom:.6rem;}
+.sttl{font-family:'DotGothic16',monospace;font-size:clamp(1.4rem,4vw,2.2rem);color:var(--day-ink);margin-bottom:2.5rem;}
+body:not(.day) .sttl{color:rgba(180,255,220,.8);}
+.hero{position:relative;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:#0a2e1e;}
+.hsketch{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:visible;}
+50%{transform:translateY(-12px)}}50%{transform:translateY(-14px)}}50%{transform:translateY(-10px)}}
+50%{transform:translateY(-14px)}}50%{transform:translateY(-12px)}}50%{transform:translateY(-12px)}}
+50%{transform:translateY(-10px)}}50%{transform:translateY(-10px)}}50%{transform:translateY(-8px)}}
+.hero-body{position:relative;z-index:2;text-align:center;max-width:720px;margin-top:10rem;}
+.hero-tag{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.28em;color:rgba(0,220,130,.45);margin-bottom:1rem;display:block;text-align:center;}
+.hero-title{font-family:'Silkscreen','DotGothic16',monospace;font-size:clamp(2.4rem,9vw,6rem);line-height:1.2;color:rgba(200,255,225,.9);margin-bottom:1.4rem;letter-spacing:.06em;}
+.hero-catch{font-size:clamp(.9rem,2vw,1.05rem);line-height:1.9;color:rgba(150,230,190,.65);max-width:520px;margin:0 auto 2.5rem;text-align:center;}
+body.day .hero-catch{color:var(--day-mid);}
+.glitch{position:relative;display:inline-block;}
+.glitch::before,.glitch::after{content:attr(data-text);position:absolute;inset:0;opacity:0;pointer-events:none;}
+.glitch::before{color:var(--em3);clip-path:polygon(0 0,100% 0,100% 35%,0 35%);animation:gA 1.4s infinite;left:-5px;}
+.glitch::after{color:var(--em);clip-path:polygon(0 60%,100% 60%,100% 100%,0 100%);animation:gB 1.4s infinite 0.2s;left:5px;}
+@keyframes gA{0%,60%{opacity:0;transform:translate(0)}61%{opacity:1;transform:translate(-6px,2px)}62%{opacity:.8;transform:translate(5px,-2px);clip-path:polygon(0 10%,100% 10%,100% 44%,0 44%)}63%{opacity:1;transform:translate(-4px,1px)}64%{opacity:.7;transform:translate(6px,-3px);clip-path:polygon(0 0,100% 0,100% 30%,0 30%)}65%{opacity:.9;transform:translate(-3px,2px)}66%{opacity:0;transform:translate(0)}80%{opacity:0;transform:translate(0)}81%{opacity:.8;transform:translate(4px,-1px)}82%{opacity:.6;transform:translate(-5px,2px)}83%{opacity:0;transform:translate(0)}100%{opacity:0;transform:translate(0)}}
+@keyframes gB{0%,55%{opacity:0;transform:translate(0)}56%{opacity:.9;transform:translate(6px,-2px)}57%{opacity:.7;transform:translate(-5px,3px);clip-path:polygon(0 62%,100% 62%,100% 90%,0 90%)}58%{opacity:1;transform:translate(4px,-1px)}59%{opacity:.6;transform:translate(-6px,2px);clip-path:polygon(0 55%,100% 55%,100% 100%,0 100%)}60%{opacity:.8;transform:translate(3px,-2px)}61%{opacity:0;transform:translate(0)}75%{opacity:0}76%{opacity:.7;transform:translate(-4px,1px)}77%{opacity:.5;transform:translate(5px,-2px)}78%{opacity:0;transform:translate(0)}100%{opacity:0;transform:translate(0)}}
+@keyframes doorShake{0%,100%{transform:rotate(0)}20%{transform:rotate(-5deg)}40%{transform:rotate(5deg)}60%{transform:rotate(-3deg)}80%{transform:rotate(3deg)}}
+.door-shake{animation:doorShake .3s ease;}
+.door-wrap{display:flex;flex-direction:column;align-items:center;gap:.5rem;cursor:pointer;position:absolute;right:4%;top:50%;width:80px;text-align:center;z-index:3;}
+.door-flash{position:fixed;inset:0;z-index:9999;background:#fff;animation:flashOut .4s ease forwards;pointer-events:none;}
+@keyframes flashOut{0%{opacity:.9}100%{opacity:0}}
+.rcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.4rem;align-items:stretch;}
+.rc{
+  border:7px solid #0a2e1e;box-shadow:2px 3px 0 #0a2e1e,-1px 2px 0 #0a2e1e,3px -1px 0 #0a2e1e,-2px -2px 0 #0a2e1e;overflow:hidden;
+  border-radius:2px;
+  overflow:hidden;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  background:#f8faf8;
+  transition:transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s;
+  transform-origin:left center;
+  position:relative;
+  box-shadow:4px 4px 0 rgba(0,0,0,.2);
+}
+.rc::before {
+  content:'';
+}
+.rc::after { content:''; }
+.rc:hover{transform:perspective(800px) rotateY(-8deg);box-shadow:8px 8px 24px rgba(0,0,0,.2);transform-origin:left center;}
+body:not(.day) .rc{background:rgba(0,30,15,.6);border-color:rgba(0,180,100,.15);}
+body:not(.day) .rc:hover{border-color:rgba(0,220,130,.35);}
+.rcimg{width:100%;height:200px;background-size:cover;background-position:center;background-color:#f0f0f0;filter:saturate(.6) brightness(.85);transition:filter .4s;flex-shrink:0;}
+.rc:hover .rcimg{filter:saturate(.9) brightness(1);}
+.rcbody{padding:1.8rem 1.2rem 1.1rem;display:flex;flex-direction:column;flex:1;min-height:180px;}
+.rcid{
+  position:absolute;
+  top:16px;
+  right:-2px;
+  writing-mode:vertical-rl;
+  text-orientation:mixed;
+  font-family:'DotGothic16',monospace;
+  font-size:.72rem;
+  letter-spacing:.12em;
+  color:#0a2e1e;
+  background:rgb(255,250,200);
+  padding:.4rem .3rem;
+  border-radius:3px 0 0 3px;
+  border:2px solid #0a2e1e;
+  border-right:none;
+  z-index:4;
+  white-space:nowrap;
+  box-shadow:-2px 2px 0 rgba(0,0,0,.12);
+}
+.rcttl{font-family:'DotGothic16',monospace;font-size:1.15rem;line-height:1.55;color:#081a10;margin-bottom:.5rem;}
+body:not(.day) .rcttl{font-family:'DotGothic16',monospace;font-size:1.15rem;line-height:1.55;color:#081a10;margin-bottom:.5rem;}
+.rcdesc{font-size:.88rem;line-height:1.7;color:#3a6a4a;flex:1;}
+
+.rcfoot{display:none;}
+.rcst{display:none;}
+.sa{display:none;}
+.sw2{background:rgba(200,160,0,.1);color:#8a6600;}
+body:not(.day) .sw2{color:#ddaa44;}
+.rcarr{font-size:.9rem;color:var(--em2);opacity:.5;}
+.bucket-section{position:relative;text-align:center;padding:200px 0 120px;}
+.bucket-wrap{position:relative;display:inline-flex;flex-direction:column;align-items:center;}
+.bucket-svg{display:block;cursor:pointer;}
+.bucket-hint{font-family:'Share Tech Mono',monospace;font-size:.78rem;letter-spacing:.24em;color:var(--em2);opacity:.7;margin-top:.8rem;cursor:pointer;}
+@keyframes buckShake{0%,100%{transform:rotate(0)}15%{transform:rotate(-8deg)}35%{transform:rotate(8deg)}55%{transform:rotate(-5deg)}75%{transform:rotate(5deg)}}
+.buck-shaking{animation:buckShake .4s ease;}
+.bcard{font-family:'DotGothic16',monospace;font-size:.78rem;line-height:1.65;padding:.65rem .75rem;border-radius:4px;border:4px solid rgba(0,200,120,.35);background:var(--day-card);cursor:default;white-space:normal;width:90px;text-align:center;position:absolute;opacity:0;bottom:0;left:50%;transform:translateX(-50%) translateY(20px);color:var(--day-ink);}
+body:not(.day) .bcard{color:rgba(180,255,210,.9);}
+.lgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.4rem;}
+.lc{border:1px solid rgba(0,180,100,.18);border-radius:10px;overflow:hidden;text-decoration:none;color:var(--day-ink);display:flex;flex-direction:column;background:#fff;transition:box-shadow .25s,border-color .25s;}
+.lc:hover{box-shadow:0 6px 24px rgba(0,120,60,.1);border-color:rgba(0,180,100,.3);}
+body:not(.day) .lc{background:rgba(0,30,15,.6);border-color:rgba(0,180,100,.15);color:rgba(200,255,220,.8);}
+.lc-thumb{width:100%;height:140px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:filter .3s;}
+.lc:hover .lc-thumb{filter:brightness(1.3);}
+.lc-yt{background:#f5f5f5;}
+.lc-tt{background:linear-gradient(135deg,#101050 0%,#2020a0 100%);}
+.lc-nt{background:#f5f5f5;}
+.lc-body{padding:.9rem 1.1rem 1.4rem;flex:1;display:flex;flex-direction:column;gap:.3rem;}
+.lcplat{font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.2em;color:var(--em2);}
+body:not(.day) .lcplat{color:rgba(0,220,130,.55);}
+.lcttl{font-family:'DotGothic16',monospace;font-size:.92rem;color:#081a10;line-height:1.6;}
+body:not(.day) .lcttl{color:#e0fff0;}
+.lcmeta{font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--day-lite);}
+body:not(.day) .lcmeta{color:rgba(150,255,200,.38);}
+.lcarr{display:none;font-size:.9rem;color:var(--em2);opacity:.4;padding:.5rem 1rem;align-self:flex-end;}
+.site-footer{padding:3rem 0 calc(4rem + env(safe-area-inset-bottom, 0px));border-top:1px solid rgba(0,200,120,.2);margin-top:0;background:#0a2e1e;}
+.footer-brand{text-align:center;font-family:'DotGothic16',monospace;font-size:.88rem;color:rgba(0,220,130,.7);margin-bottom:1.2rem;letter-spacing:.08em;}
+.footer-links{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-bottom:1.5rem;}
+.footer-link{font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.14em;color:rgba(150,255,200,.8);text-decoration:none;padding:.5rem 1.1rem;border:1.5px solid rgba(0,200,120,.35);border-radius:50px;transition:background .2s,border-color .2s,color .2s;display:inline-flex;align-items:center;gap:.4rem;line-height:1;}
+.footer-link:hover{background:rgba(0,200,120,.15);border-color:rgba(0,220,130,.7);color:#fff;}
+.footer-copy{text-align:center;font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.2em;color:rgba(150,255,200,.3);}
+#danger{position:fixed;inset:0;z-index:9900;display:none;flex-direction:column;align-items:center;justify-content:flex-start;background:var(--d-bg);overflow-y:auto;overflow-x:hidden;}
+#danger.on{display:flex;animation:din .4s ease both;}
+.dsl{display:none;position:fixed;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--d-red),transparent);animation:dscan 3s linear infinite;}
+@keyframes dscan{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.dgr{display:none;position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,20,50,.015) 2px,rgba(255,20,50,.015) 4px);}
+.dbar{display:none;position:fixed;inset:0;pointer-events:none;animation:dbar 8s steps(1) infinite;}
+@keyframes dbar{0%,90%{background:transparent}92%{background:rgba(255,20,50,.06)}94%{background:transparent}96%{background:rgba(255,20,50,.04)}100%{background:transparent}}
+.dst{display:none;position:fixed;font-family:'Share Tech Mono',monospace;font-size:.5rem;letter-spacing:.3em;color:rgba(255,80,100,.4);}
+.dst.tl{top:1rem;left:1.5rem;}.dst.br{bottom:1rem;right:1.5rem;}
+.dcon{position:relative;z-index:2;text-align:center;padding:6rem 1.2rem 1.5rem;max-width:960px;width:100%;margin:0 auto;box-sizing:border-box;}
+.dcode{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.2em;color:rgba(255,120,140,.7);margin-bottom:1.2rem;}
+.dttl{font-family:'Orbitron',monospace;font-weight:900;font-size:clamp(2rem,7vw,4.8rem);color:#ff4060;line-height:1.1;margin-bottom:.7rem;display:block;width:100%;text-shadow:0 0 40px rgba(255,30,70,.9),0 0 80px rgba(255,30,70,.4);animation:dgl .05s steps(1) infinite;}
+@keyframes dgl{0%,100%{text-shadow:0 0 28px rgba(255,30,70,.6)}50%{text-shadow:4px 0 28px rgba(255,30,70,.6),-4px 0 12px rgba(0,255,200,.3)}}
+.dsub{font-family:'Share Tech Mono',monospace;font-size:.7rem;letter-spacing:.22em;color:rgba(255,160,170,.85);margin-bottom:2.2rem;}
+.dbtn{font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.2em;color:#ff6080;border:1.5px solid rgba(255,80,100,.7);background:rgba(255,30,70,.1);padding:.9rem 2.4rem;cursor:pointer;display:block;margin:.8rem auto;transition:background .2s,border-color .2s;}
+.dbtn:hover{background:rgba(255,30,70,.25);border-color:rgba(255,100,120,.9);}
+.wmap-wrap{width:100%;max-width:100%;padding:0;box-sizing:border-box;margin-bottom:2rem;animation:ecin .5s ease .2s both;}
+.wmap-label{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.22em;color:rgba(255,140,155,.8);margin-bottom:.8rem;text-align:center;}
+.wmap-container{position:relative;border:1px solid rgba(255,30,70,.2);background:#040002;overflow:hidden;}
+.wmap-svg{width:100%;height:auto;display:block;}
+.wmap-pin{transition:opacity .2s;}.wmap-pin:hover{opacity:.75;}
+.wmap-panel{position:absolute;inset:0;background:rgba(8,0,4,.97);display:none;flex-direction:column;overflow-y:auto;padding:2rem;}
+.wmap-panel.open{display:flex;}
+.wmap-panel-inner{flex:1;}
+.wmap-close{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.2em;color:rgba(255,30,70,.5);border:1px solid rgba(255,30,70,.2);background:none;cursor:pointer;padding:.5rem 1rem;align-self:flex-start;margin-top:1rem;}
+.wmap-loc-label{font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;color:var(--d-red);margin-bottom:.4rem;}
+.wmap-loc-status{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.2em;color:rgba(255,30,70,.45);margin-bottom:1.5rem;}
+.wmap-exp{border-left:2px solid rgba(255,30,70,.25);padding-left:1rem;margin-bottom:1.5rem;}
+.wmap-exp-no{font-family:'Share Tech Mono',monospace;font-size:.52rem;color:rgba(255,30,70,.35);}
+.wmap-exp-st{font-family:'Share Tech Mono',monospace;font-size:.54rem;color:rgba(255,30,70,.45);margin-bottom:.3rem;}
+.wmap-exp-ttl{font-family:'DotGothic16',monospace;font-size:.88rem;color:rgba(255,180,180,.85);margin-bottom:.4rem;}
+.wmap-exp-note{font-size:.75rem;line-height:1.8;color:rgba(255,150,150,.5);}
+.mystery-countdown{margin:1.5rem 0 0;text-align:center;padding:1.5rem 2rem;border:1px solid rgba(255,80,100,.4);background:rgba(255,10,30,.08);position:relative;width:100%;box-sizing:border-box;}
+.mcd-label{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.22em;color:rgba(255,160,170,.8);margin-bottom:1.5rem;}
+.mcd-digits{display:flex;align-items:center;justify-content:center;gap:.5rem;margin-bottom:1.2rem;}
+.mcd-unit{display:flex;flex-direction:column;align-items:center;gap:.3rem;}
+.mcd-num{font-family:'Orbitron',monospace;font-size:clamp(2rem,6vw,3.2rem);font-weight:700;color:#ff5070;text-shadow:0 0 24px rgba(255,30,70,.8),0 0 8px rgba(255,100,120,.6);min-width:2ch;display:block;line-height:1;}
+.mcd-unit-label{font-family:'Share Tech Mono',monospace;font-size:.52rem;letter-spacing:.18em;color:rgba(255,150,160,.65);}
+.mcd-sep{font-family:'Orbitron',monospace;font-size:clamp(1.5rem,5vw,2.5rem);color:rgba(255,80,100,.6);margin-bottom:1rem;animation:blk 1s steps(1) infinite;}
+@keyframes blk{0%,49%{opacity:1}50%,100%{opacity:0}}
+.mcd-sub{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.18em;color:rgba(255,140,155,.55);}
+.dbgbar{position:fixed;bottom:0;left:0;width:100%;z-index:600;display:none;gap:1.5rem;padding:.35rem 1.5rem;background:rgba(4,0,2,.7);border-top:1px solid rgba(255,20,40,.1);font-family:'Share Tech Mono',monospace;font-size:.48rem;letter-spacing:.18em;color:rgba(255,30,70,.25);pointer-events:none;opacity:0;transition:opacity .3s;}
+body.danger 
+.di b{color:rgba(255,80,100,.45);}
+@media(max-width:768px){
+  #nav{display:none!important;}
+  #subnav{display:none!important;}
+  .wmap-container{aspect-ratio:16/9;}
+  .wmap-wrap{padding:0;}
+  #wmapD3 svg{width:100%;height:100%;position:absolute;top:0;left:0;}
+
+  .nav-links{display:none;}
+  .sw{padding:0 1rem;}section{padding:1.5rem 0 4rem;}
+  .hero-body{margin-top:5rem;}
+  .bucket-section{padding:220px 0 120px;}
+  .hero-body{text-align:center;width:100%;}
+  .hero-tag{text-align:center;display:block;}
+  .hero-title{text-align:center;}
+  .hero-catch{text-align:center;margin-left:auto;margin-right:auto;}
+  .door-wrap{margin-left:auto;margin-right:auto;}
+  .nav-logo{font-size:.9rem;position:absolute;left:1.4rem;}
+  .nav-logo svg{width:32px;height:24px;}
+  .nav-r{font-size:.62rem;position:static;}
+  .ndot{width:7px;height:7px;}
+  .rcgrid{grid-template-columns:1fr 1fr;}.lgrid{grid-template-columns:1fr;}
+  /* カウントダウンをコンパクトに */
+  .mystery-countdown{margin:.4rem auto 0;padding:.5rem .8rem;}
+  .mcd-label{font-size:.42rem;margin-bottom:.4rem;letter-spacing:.12em;}
+  .mcd-digits{gap:.2rem;margin-bottom:.3rem;}
+  .mcd-num{font-size:1.4rem;}
+  .mcd-sep{font-size:1.1rem;margin-bottom:.3rem;}
+  .mcd-unit-label{font-size:.38rem;}
+  .mcd-sub{font-size:.42rem;}
+  /* 地図を大きく */
+  .wmap-wrap{margin-bottom:.5rem;}
+  .wmap-label{font-size:.52rem;margin-bottom:.4rem;}
+
+  /* dangerページ */
+  .dcon{padding:5rem 1rem 1.5rem;}
+  .dcode{font-size:.42rem;letter-spacing:.12em;margin-bottom:.4rem;}
+  .dttl{font-size:clamp(1.6rem,8vw,2.6rem);margin-bottom:.3rem;}
+  .dsub{font-size:.48rem;letter-spacing:.1em;margin-bottom:.4rem;}
+  .mystery-countdown{margin:.3rem auto;padding:.5rem .8rem;}
+  .mcd-label{font-size:.42rem;letter-spacing:.12em;margin-bottom:.3rem;}
+  .mcd-digits{gap:.2rem;margin-bottom:.25rem;}
+  .mcd-num{font-size:1.4rem;}
+  .mcd-sep{font-size:1.1rem;margin-bottom:.25rem;}
+  .mcd-unit-label{font-size:.36rem;}
+  .mcd-sub{font-size:.4rem;}
+  .wmap-wrap{margin-bottom:0;}
+  .wmap-label{font-size:.48rem;margin-bottom:.3rem;letter-spacing:.14em;}
+  .wmap-container{aspect-ratio:4/3;}
+  .dbtn{font-size:.6rem;padding:.65rem 1.4rem;margin:.5rem auto;}
+}
+@media(max-width:480px){.rcgrid{grid-template-columns:1fr;}.bcard{width:110px!important;}}
+
+
+
+
+
+
+
+
+ }
+ 50%{transform:translateY(-14px)} }
+ 50%{transform:rotate(4deg)} }
+
+50%{transform:translateY(-14px)}}50%{transform:translateY(-12px);}}
+50%{transform:translateY(-12px)}}50%{transform:translateY(-14px);}}
+50%{transform:translateY(-10px)}}50%{transform:translateY(-10px);}}
+
+
+
+
+@keyframes fy-cam   { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+ 50% { transform: translateY(-12px); } }
+ 50% { transform: translateY(-10px); } }
+
+
+
+}
+
+
+
+ 100% { transform: translateY(0); } }
+ 100% { transform: translateY(0); } }
+
+@keyframes doorKnock {
+  0%   { transform: scale(1) rotate(0deg); }
+  15%  { transform: scale(0.92) rotate(-3deg); }
+  35%  { transform: scale(1.05) rotate(3deg); }
+  55%  { transform: scale(0.95) rotate(-2deg); }
+  75%  { transform: scale(1.03) rotate(1deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+@keyframes doorSwing {
+  0%   { transform: scale(1) rotate(0deg); opacity: 1; }
+  50%  { transform: scale(1.15) rotate(-3deg); opacity: 0.8; }
+  100% { transform: scale(0) rotate(5deg); opacity: 0; }
+}
+.door-knock { animation: doorKnock .3s ease; }
+.door-swing {
+  transform-origin: left center;
+  animation: doorSwing .5s cubic-bezier(.4,0,.2,1) forwards;
+}
+
+@keyframes doorOpen {
+  0%   { transform: scaleX(1); transform-origin: left center; }
+  100% { transform: scaleX(0); transform-origin: left center; }
+}
+.door-open { animation: doorOpen .4s ease forwards; transform-origin: left center; }
+#research{padding-top:0!important;margin-top:0!important;}
+
+@keyframes stripeMove {
+  from { background-position: 0 0; }
+  to   { background-position: 56px 0; }
+}
+.d-stripe {
+  position: fixed;
+  left: 0; width: 100%; height: 16px;
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(255,30,70,.55) 0px,
+    rgba(255,30,70,.55) 10px,
+    rgba(10,10,10,.7) 10px,
+    rgba(10,10,10,.7) 20px
+  );
+  background-size: 56px 56px;
+  animation: stripeMove 1.2s linear infinite;
+  z-index: 9950;
+  flex-shrink: 0;
+}
+.d-stripe-top { top: 0; display:none; }
+body.danger .d-stripe-top { display: block; }
+.d-stripe-bot { bottom: 0; display: none; }
+body.danger .d-stripe-bot { display: block; }
+
+/* ドロップダウン */
+.nav-dropdown { position: relative; padding-bottom: 8px; }
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% - 4px);
+  right: 0;
+  background: rgba(8,36,22,.97);
+  border: 1px solid rgba(0,220,130,.15);
+  border-radius: 6px;
+  min-width: 200px;
+  padding: .4rem 0;
+  z-index: 600;
+  backdrop-filter: blur(14px);
+}
+.nav-dropdown:hover .nav-dropdown-menu { display: block; }
+.nav-dropdown-menu a {
+  display: block;
+  font-family: 'DotGothic16', monospace;
+  font-size: .7rem;
+  color: rgba(200,255,220,.7);
+  text-decoration: none;
+  padding: .55rem 1rem;
+  letter-spacing: .05em;
+  transition: color .15s, background .15s;
+}
+.nav-dropdown-menu a:hover {
+  color: rgba(0,220,130,1);
+  background: rgba(0,220,130,.06);
+}
+.nav-dropdown-menu .ndm-tag {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .5rem;
+  letter-spacing: .18em;
+  color: rgba(0,220,130,.35);
+  display: block;
+  padding: .6rem 1rem .2rem;
+}
+
+.rc-knob {
+  position: absolute;
+  right: 4px;
+  top: 63%;
+  transform: translateY(-50%);
+  z-index: 4;
+  transition: transform .3s ease;
+}
+.rc:hover .rc-knob {
+  transform: translateY(-50%);
+}
+
+body.danger .dsl,
+body.danger .dgr,
+body.danger .dbar,
+body.danger .dst { display: block; }
+
+#pullCordWrap {
+  overflow: hidden;
+  height: 50px;
+  transition: height 1.2s cubic-bezier(.22,1,.36,1);
+}
+#pullCordWrap.stretched {
+  height: 150px;
+}
+
+
+#nav {
+  transition: transform .3s ease, background .4s;
+}
+#nav.nav-hidden {
+  transform: translateY(-100%);
+}
+</style>
+<script>
+window.addEventListener('load', function(){
+  window.scrollTo(0, 0);
+});
+</script>
+</head>
+<body>
+<svg style="position:absolute;width:0;height:0;overflow:hidden;" aria-hidden="true">
+  <defs>
+    <filter id="card-rough">
+      <feTurbulence type="turbulence" baseFrequency="0.015 0.02" numOctaves="2" seed="3"/>
+      <feDisplacementMap in="SourceGraphic" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+</svg>
+<div id="cr"></div><div id="cd"></div>
+
+<!-- DANGER -->
+<div id="danger">
+  <div class="d-stripe d-stripe-top"></div>
+  <div class="dsl"></div><div class="dgr"></div><div class="dbar"></div>
+  <div class="dst tl">CLASSIFIED</div><div class="dst br">PROJECT_X</div>
+  <div class="dcon">
+    <div class="dcode">// FILE: PROJECT_MAGIKAI // ACCESS_LEVEL: 9 // TIMESTAMP: ██████</div>
+    <h2 class="dttl">人類魔改造計画</h2>
+    <p class="dsub">OPERATION MAGIKAI — PHASE 03 — ACTIVE</p>
+    <div class="mystery-countdown" id="mysteryCountdown">
+      <div class="mcd-label" id="mcdLabel">// UNKNOWN TARGET — CLASSIFIED</div>
+      <div class="mcd-digits">
+        <div class="mcd-unit"><span class="mcd-num" id="mcdD">00</span><span class="mcd-unit-label">DAYS</span></div>
+        <div class="mcd-sep">:</div>
+        <div class="mcd-unit"><span class="mcd-num" id="mcdH">00</span><span class="mcd-unit-label">HRS</span></div>
+        <div class="mcd-sep">:</div>
+        <div class="mcd-unit"><span class="mcd-num" id="mcdM">00</span><span class="mcd-unit-label">MIN</span></div>
+        <div class="mcd-sep">:</div>
+        <div class="mcd-unit"><span class="mcd-num" id="mcdS">00</span><span class="mcd-unit-label">SEC</span></div>
+      </div>
+      <div class="mcd-sub" id="mcdSub">██████████ — ACCESS DENIED</div>
+    </div>
+  </div>
+  <div class="wmap-wrap">
+    <div class="wmap-label">// OPERATION SPREAD — GLOBAL INFECTION MAP</div>
+    <div class="wmap-container" id="wmapContainer">
+      <div id="wmapD3" style="width:100%;background:#040002;min-height:260px;"></div>
+      <div class="wmap-panel" id="wmapPanel">
+        <div class="wmap-panel-inner" id="wmapPanelInner"></div>
+        <button class="wmap-close" id="wmapClose">✕ CLOSE</button>
+      </div>
+    </div>
+  </div>
+  <script type="application/json" id="wmapData">{"tokyo":{"label":"★ TOKYO — 研究本部","status":"● ACTIVE — 全実験の発信源","experiments":[{"no":"EXP-614","st":"▲ 個人研究継続中","ttl":"睡眠中も人類は改造できるか","note":"無意識のブラックボックスの中はどうなっているのか。明晰夢をコントロールできるようにする過程で発見したパターンは、どこまでが人類共通のパターンなのか。"},{"no":"EXP-412","st":"▲ 想定外の結果","ttl":"共感覚にパターンがあれば、価値観が似るのか","note":"共感覚保有者（人口の約4%）はどういうタイプなのか。全人類にこの知覚をインストールしたら、世界はどう見えるのか。"}]},"london":{"label":"● LONDON — 共感覚観測拠点","status":"▲ 観測中","experiments":[{"no":"EXP-412","st":"▲ 想定外の結果","ttl":"共感覚にパターンがあれば、価値観が似るのか","note":"全人類にこの知覚をインストールしたら、世界はどう見えるのか。実験フェーズ2へ移行する。"}]},"newyork":{"label":"● NEW YORK — AI感染観測","status":"● 感染拡大中","experiments":[{"no":"EXP-501","st":"▲ 最重要計画","ttl":"概念的クローンを増殖させる計画","note":"思考・価値観・美意識・変な好奇心。全部AIに学習させ、そのAIと会話し続けた人類は、少しずつ近づくのか。"}]},"norway":{"label":"● NORWAY — 極夜睡眠実験","status":"● 観測中","experiments":[{"no":"EXP-614B","st":"● 記録中","ttl":"極夜72日間、睡眠と意識の境界が溶けた","note":"太陽が沈まない環境下では明晰夢の発生率が3倍になることが判明。東京との照合を開始。"}]},"brazil":{"label":"● BRAZIL — 明晰夢急増地帯","status":"▲ 急増中","experiments":[{"no":"EXP-614C","st":"▲ 予期せぬ進展","ttl":"南米で明晰夢報告が急増している理由がわからない","note":"東京からの発信と無関係に、ブラジルで自然発生報告が急増。文化的背景との関連を調査中。"}]}}</script>
+  <div class="dcon" style="padding-top:2rem;padding-bottom:4rem;">
+    <button class="dbtn" onclick="closeDanger()">← 変なの研究所に戻る</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'});">
+    <svg width="36" height="24" viewBox="0 0 48 32" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <!-- 胴体 -->
+      <rect x="8" y="12" width="24" height="14" rx="4" stroke-width="2"/>
+      <!-- 頭（右） -->
+      <rect x="28" y="6" width="14" height="12" rx="3" stroke-width="2"/>
+      <!-- 耳 -->
+      <path d="M30,6 C29,2 27,0 26,2 C25,4 27,6 30,6" stroke-width="1.5"/>
+      <path d="M38,6 C39,2 41,0 42,2 C43,4 41,6 38,6" stroke-width="1.5"/>
+      <!-- 目 -->
+      <rect x="31" y="9" width="3" height="2" rx="1" fill="currentColor" stroke-width="0"/>
+      <rect x="37" y="9" width="3" height="2" rx="1" fill="currentColor" stroke-width="0"/>
+      <!-- アンテナ -->
+      <line x1="35" y1="6" x2="35" y2="2" stroke-width="1.5"/>
+      <circle cx="35" cy="1.5" r="1.5" fill="currentColor" stroke-width="0"/>
+      <!-- 足4本 -->
+      <line x1="13" y1="26" x2="12" y2="31" stroke-width="2"/>
+      <line x1="19" y1="26" x2="18" y2="31" stroke-width="2"/>
+      <line x1="25" y1="26" x2="26" y2="31" stroke-width="2"/>
+      <line x1="29" y1="26" x2="30" y2="31" stroke-width="2"/>
+      <!-- しっぽ -->
+      <path d="M8,17 C4,15 1,14 0,16 C1,18 4,18 6,16" stroke-width="1.8"/>
+    </svg>
+    変なの研究所
+  </div>
+  <ul class="nav-links">
+    <li class="nav-dropdown">
+      <a href="#research">RESEARCH ▾</a>
+      <div class="nav-dropdown-menu">
+        <span class="ndm-tag">// ACTIVE PROJECTS</span>
+        <a href="#" onclick="showPage('robot-dog');return false;">ロボット犬の挑戦</a>
+        <a href="#" onclick="showPage('gadgets');return false;">おもろい家具・アイデア雑貨</a>
+        <a href="#research">不登校伴走サービス</a>
+      </div>
+    </li>
+    <li><a href="#bucket" onclick="if(document.getElementById('bucket')){event.preventDefault();document.getElementById('bucket').scrollIntoView({behavior:'smooth'});}">BUCKET</a></li>
+    <li><a href="#log" onclick="if(document.getElementById('log')){event.preventDefault();document.getElementById('log').scrollIntoView({behavior:'smooth'});}">LOG</a></li>
+  </ul>
+  <div class="nav-r"><div class="ndot"></div><span id="ns">ONLINE</span></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <svg class="hsketch" viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <filter id="f-rough" x="-30%" y="-30%" width="160%" height="160%">
+        <feTurbulence type="turbulence" baseFrequency="0.014 0.018" numOctaves="3" seed="5" result="n"/>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+
+    <!-- 鳥（手書きフィルター付き） -->
+    <g id="sfBird" transform="translate(740,200) scale(-1,1)" filter="url(#f-rough)" opacity=".62">
+      <animateTransform attributeName="transform" type="translate" values="0,0;0,-12;0,0" dur="6s" repeatCount="indefinite" additive="sum"/>
+      <ellipse cx="0" cy="0" rx="30" ry="20" fill="rgba(0,200,120,.16)" stroke="rgba(0,230,130,1)" stroke-width="2.5"/>
+      <circle cx="28" cy="-12" r="16" fill="rgba(0,200,120,.16)" stroke="rgba(0,230,130,1)" stroke-width="2.5"/>
+      <path d="M40,-14 L58,-18 L54,-8Z" fill="rgba(200,255,120,.7)" stroke="rgba(200,255,120,1)" stroke-width="1.8" stroke-linejoin="round"/>
+      <circle cx="32" cy="-16" r="5" fill="rgba(0,200,120,.45)" stroke="rgba(0,230,130,1)" stroke-width="2"/>
+      <circle cx="32" cy="-16" r="2.2" fill="rgba(0,230,130,1)"/>
+      <path d="M-26,-6 C-42,-16 -58,-22 -68,-18 C-60,-6 -44,0 -26,2" fill="rgba(0,200,120,.14)" stroke="rgba(0,230,130,1)" stroke-width="2.2" stroke-linejoin="round"/>
+      <path d="M-28,8 C-40,16 -52,26 -60,36" fill="none" stroke="rgba(0,230,130,1)" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M-24,12 C-38,18 -50,24 -60,30" fill="none" stroke="rgba(0,230,130,.65)" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M-4,18 C-6,32 -10,42 -14,52" fill="none" stroke="rgba(0,230,130,1)" stroke-width="2" stroke-linecap="round"/>
+      <path d="M-14,52 C-18,54 -22,54 -24,52 M-14,52 C-12,56 -10,58 -8,56" fill="none" stroke="rgba(0,230,130,1)" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M10,18 C12,32 14,42 16,52" fill="none" stroke="rgba(0,230,130,1)" stroke-width="2" stroke-linecap="round"/>
+      <path d="M16,52 C12,54 8,54 6,52 M16,52 C18,56 20,58 22,56" fill="none" stroke="rgba(0,230,130,1)" stroke-width="1.8" stroke-linecap="round"/>
+    </g>
+
+    <!-- ロボット犬（手書きフィルター付き） -->
+    <g id="sfRobot" transform="translate(490,550) scale(1.0)" filter="url(#f-rough)" opacity=".62">
+      <animateTransform attributeName="transform" type="translate" values="0,0;0,-10;0,0" dur="8s" begin="0.5s" repeatCount="indefinite" additive="sum"/>
+      <rect x="-50" y="-28" width="100" height="60" rx="14" fill="rgba(0,200,120,.14)" stroke="rgba(0,220,140,1)" stroke-width="2.5"/>
+      <rect x="38" y="-44" width="52" height="44" rx="10" fill="rgba(0,200,120,.14)" stroke="rgba(0,220,140,1)" stroke-width="2.5"/>
+      <path d="M44,-44 C42,-54 38,-60 36,-56 C34,-52 38,-46 44,-44" fill="rgba(0,200,120,.2)" stroke="rgba(0,220,140,1)" stroke-width="2"/>
+      <path d="M82,-44 C84,-54 88,-60 90,-56 C92,-52 88,-46 82,-44" fill="rgba(0,200,120,.2)" stroke="rgba(0,220,140,1)" stroke-width="2"/>
+      <rect x="46" y="-36" width="12" height="8" rx="3" fill="rgba(200,255,120,.85)" stroke="rgba(200,255,120,1)" stroke-width="1.5"/>
+      <rect x="66" y="-36" width="12" height="8" rx="3" fill="rgba(200,255,120,.85)" stroke="rgba(200,255,120,1)" stroke-width="1.5"/>
+      <circle cx="90" cy="-18" r="4" fill="rgba(0,220,140,.55)" stroke="rgba(0,220,140,1)" stroke-width="1.8"/>
+      <path d="M52,-12 Q64,-6 76,-12" fill="none" stroke="rgba(0,220,140,1)" stroke-width="2" stroke-linecap="round"/>
+      <line x1="64" y1="-44" x2="64" y2="-58" stroke="rgba(200,255,120,1)" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="64" cy="-62" r="4.5" fill="rgba(200,255,120,.8)" stroke="rgba(200,255,120,1)" stroke-width="1.5"/>
+      <path d="M-38,32 L-40,58 L-44,66" stroke="rgba(0,220,140,1)" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path d="M-18,32 L-18,60 L-22,68" stroke="rgba(0,220,140,1)" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path d="M18,32 L20,60 L16,68" stroke="rgba(0,220,140,1)" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path d="M38,32 L42,58 L46,66" stroke="rgba(0,220,140,1)" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <ellipse cx="-44" cy="68" rx="7" ry="4" fill="rgba(0,200,120,.35)" stroke="rgba(0,220,140,1)" stroke-width="1.5"/>
+      <ellipse cx="-22" cy="70" rx="7" ry="4" fill="rgba(0,200,120,.35)" stroke="rgba(0,220,140,1)" stroke-width="1.5"/>
+      <ellipse cx="16" cy="70" rx="7" ry="4" fill="rgba(0,200,120,.35)" stroke="rgba(0,220,140,1)" stroke-width="1.5"/>
+      <ellipse cx="46" cy="68" rx="7" ry="4" fill="rgba(0,200,120,.35)" stroke="rgba(0,220,140,1)" stroke-width="1.5"/>
+      <path d="M-50,-10 C-62,-16 -74,-20 -80,-14 C-76,-8 -68,-8 -62,-12 C-66,-6 -64,4 -56,6" fill="none" stroke="rgba(0,220,140,1)" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+
+  </svg>
+  <div class="hero-body">
+    <span class="hero-tag">ODD WORKS // EST. ████ // GHOST PROTOCOL LAB</span>
+    <h1 class="hero-title"><span class="glitch" data-text="変なの">変なの</span>研究所</h1>
+
+    <p class="hero-catch">役に立つかもしれないし、立たないかもしれない。<br>変なものをガチで作っています。</p>
+  </div>
+    <div class="door-wrap" id="doorWrap" onclick="doorClicks++;var ds=document.getElementById('doorSvg');ds.classList.remove('door-shake');void ds.offsetWidth;ds.classList.add('door-shake');if(doorClicks>=3){doorClicks=0;ds.classList.add('door-open');setTimeout(function(){var f=document.createElement('div');f.className='door-flash';document.body.appendChild(f);openDanger();setTimeout(function(){f.remove();ds.classList.remove('door-open');},500);},350);}">
+      <svg class="door-svg" id="doorSvg" viewBox="0 0 80 110" xmlns="http://www.w3.org/2000/svg" width="56" height="77">
+        <rect x="4" y="4" width="72" height="102" rx="3" fill="none" stroke="rgba(0,230,180,.1)" stroke-width="1.5"/>
+        <rect x="10" y="10" width="60" height="90" rx="2" fill="rgba(0,230,180,.02)" stroke="rgba(0,230,180,.07)" stroke-width="1"/>
+        <circle cx="58" cy="57" r="3" fill="rgba(0,230,180,.08)"/>
+        <line x1="4" y1="4" x2="10" y2="10" stroke="rgba(0,230,180,.07)" stroke-width="1"/>
+        <line x1="76" y1="4" x2="70" y2="10" stroke="rgba(0,230,180,.07)" stroke-width="1"/>
+        <line x1="4" y1="106" x2="10" y2="100" stroke="rgba(0,230,180,.07)" stroke-width="1"/>
+        <line x1="76" y1="106" x2="70" y2="100" stroke="rgba(0,230,180,.07)" stroke-width="1"/>
+      </svg>
+      <span class="door-count" id="doorCount" style="display:none;">KNOCK 0/3</span>
+    </div>
+
+
+</section>
+<div id="heroBand" style="background:#0a2e1e;height:8rem;margin:0;padding:0;"></div>
+<!-- RESEARCH -->
+<section id="research" style="padding-top:3rem;margin-top:0;background:#f4faf6;"><div class="sw">
+  <!-- 天井からぶら下がるランプ -->
+  <div style="text-align:center;margin-top:0;margin-bottom:0;position:relative;display:flex;align-items:flex-start;justify-content:center;gap:0;width:100%;">
+    <!-- ランプ -->
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <div style="width:4px;background:#0a2e1e;margin:0 auto;height:2rem;"></div>
+      <svg viewBox="0 0 120 140" width="100" height="117" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="lamp-rough">
+            <feTurbulence type="turbulence" baseFrequency="0.025" numOctaves="2" seed="4"/>
+            <feDisplacementMap in="SourceGraphic" scale="2.5"/>
+          </filter>
+        </defs>
+        <circle cx="60" cy="80" r="12" fill="rgba(255,250,200,.85)" stroke="#0a2e1e" stroke-width="2.5"/>
+        <path d="M40,32 L80,32 L98,78 L22,78 Z" fill="#0a2e1e" stroke="#0a2e1e" stroke-width="3" stroke-linejoin="round" filter="url(#lamp-rough)"/>
+        <line x1="60" y1="0" x2="60" y2="32" stroke="#0a2e1e" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <!-- 引き紐 -->
+    <div id="pullCordWrap" style="display:flex;flex-direction:column;align-items:center;margin-left:8px;margin-top:0;">
+      <svg id="pullCord" viewBox="0 0 20 160" width="18" height="160" style="display:block;" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;">
+        <defs>
+          <filter id="cord-rough">
+            <feTurbulence type="turbulence" baseFrequency="0.04" numOctaves="2" seed="9"/>
+            <feDisplacementMap in="SourceGraphic" scale="2"/>
+          </filter>
+        </defs>
+        <!-- 紐 -->
+        <path id="pullCordPath" d="M10,0 Q8,20 10,40 Q12,60 10,80 Q8,100 10,120 Q12,140 10,150"
+          fill="none" stroke="#0a2e1e" stroke-width="7" stroke-linecap="round"
+          filter="url(#cord-rough)"/>
+        <!-- 先端の縦長楕円 -->
+        <ellipse id="pullCordBead" cx="10" cy="157" rx="5" ry="9" fill="#0a2e1e" filter="url(#cord-rough)"/>
+      </svg>
+    </div>
+  </div>
+  <div class="rev" style="margin-top:3.75rem;"><span class="slbl">// ACTIVE RESEARCH</span><h2 class="sttl">研究中のもの</h2></div>
+  <div class="rcgrid">
+    <div class="rc rev d1" onclick="showPage('robot-dog')">
+      <div class="rcimg" style="background-image:url('https://images.unsplash.com/photo-1561557944-6e7860d1a7eb?w=600&q=80')"></div>
+      <div class="rc-knob">
+  <svg width="50" height="30" viewBox="0 0 82 50" xmlns="http://www.w3.org/2000/svg" style="position:absolute;right:-6px;top:50%;transform:translateY(-50%)">
+    <defs>
+      <filter id="knob-rough">
+        <feTurbulence type="turbulence" baseFrequency="0.035" numOctaves="2" seed="8"/>
+        <feDisplacementMap in="SourceGraphic" scale="2.5"/>
+      </filter>
+    </defs>
+    <g filter="url(#knob-rough)">
+      <rect x="50" y="2" width="26" height="46" rx="5" fill="rgb(255,250,200)" stroke="#0a2e1e" stroke-width="2.5"/>
+      <g class="rc-knob-lever" style="transform-box:fill-box;transform-origin:62px 14px;transform:rotate(0deg);transition:transform .3s cubic-bezier(.22,1,.36,1);">
+        <ellipse cx="32" cy="14" rx="30" ry="10" fill="rgb(255,250,200)" stroke="#0a2e1e" stroke-width="2.2"/>
+      </g>
+      <circle cx="63" cy="36" r="6" fill="#0a2e1e"/>
+    </g>
+  </svg>
+</div><div class="rcbody"><div class="rcid">第一研究室</div><h3 class="rcttl">ロボット犬の挑戦</h3><p class="rcdesc">憧れのロボット犬を、ついに買った…！！使い道はまだ世の中にあまりないらしい。これから使い道をいっぱい発明していくよ〜🤖🐕</p><div class="rcfoot"><span class="rcst sa">ACTIVE</span><span class="rcarr">→</span></div></div>
+    </div>
+    <div class="rc rev d2" onclick="showPage('gadgets')">
+      <div class="rcimg" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80')"></div>
+      <div class="rc-knob">
+  <svg width="50" height="30" viewBox="0 0 82 50" xmlns="http://www.w3.org/2000/svg" style="position:absolute;right:-6px;top:50%;transform:translateY(-50%)">
+    <defs>
+      <filter id="knob-rough">
+        <feTurbulence type="turbulence" baseFrequency="0.035" numOctaves="2" seed="8"/>
+        <feDisplacementMap in="SourceGraphic" scale="2.5"/>
+      </filter>
+    </defs>
+    <g filter="url(#knob-rough)">
+      <rect x="50" y="2" width="26" height="46" rx="5" fill="rgb(255,250,200)" stroke="#0a2e1e" stroke-width="2.5"/>
+      <g class="rc-knob-lever" style="transform-box:fill-box;transform-origin:62px 14px;transform:rotate(0deg);transition:transform .3s cubic-bezier(.22,1,.36,1);">
+        <ellipse cx="32" cy="14" rx="30" ry="10" fill="rgb(255,250,200)" stroke="#0a2e1e" stroke-width="2.2"/>
+      </g>
+      <circle cx="63" cy="36" r="6" fill="#0a2e1e"/>
+    </g>
+  </svg>
+</div><div class="rcbody"><div class="rcid">第二研究室</div><h3 class="rcttl">おもろい家具・アイデア雑貨</h3><p class="rcdesc">目に入るとワクワクする、なんか癒される。そんな雑貨が作りたい！そこにある意味と使い道もちゃんと繋いだ、粋なプロダクトを作るぞ🧚</p><div class="rcfoot"><span class="rcst sw2">IN PROGRESS</span><span class="rcarr">→</span></div></div>
+    </div>
+    <div class="rc rev d3">
+      <div class="rcimg" style="background-image:url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80')"></div>
+      <div class="rc-knob">
+  <svg width="50" height="30" viewBox="0 0 82 50" xmlns="http://www.w3.org/2000/svg" style="position:absolute;right:-6px;top:50%;transform:translateY(-50%)">
+    <defs>
+      <filter id="knob-rough">
+        <feTurbulence type="turbulence" baseFrequency="0.035" numOctaves="2" seed="8"/>
+        <feDisplacementMap in="SourceGraphic" scale="2.5"/>
+      </filter>
+    </defs>
+    <g filter="url(#knob-rough)">
+      <rect x="50" y="2" width="26" height="46" rx="5" fill="rgb(255,250,200)" stroke="#0a2e1e" stroke-width="2.5"/>
+      <g class="rc-knob-lever" style="transform-box:fill-box;transform-origin:62px 14px;transform:rotate(0deg);transition:transform .3s cubic-bezier(.22,1,.36,1);">
+        <ellipse cx="32" cy="14" rx="30" ry="10" fill="rgb(255,250,200)" stroke="#0a2e1e" stroke-width="2.2"/>
+      </g>
+      <circle cx="63" cy="36" r="6" fill="#0a2e1e"/>
+    </g>
+  </svg>
+</div><div class="rcbody"><div class="rcid">第三研究室</div><h3 class="rcttl">不登校伴走サービス</h3><p class="rcdesc">中学高校元不登校、今IT企業のうちだからこそ作れる、学校に行かなくても将来やっていけるようにするサービスを作ってるよ。協力者募集中〜🙋‍♀️</p><div class="rcfoot"><span class="rcst sa">ACTIVE</span><span class="rcarr">→</span></div></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- BUCKET -->
+<section id="bucket" style="background:#f4faf6;"><div class="sw">
+  <div class="rev"><span class="slbl">// WISHLIST</span><h2 class="sttl">やりたいことバケツ</h2></div>
+  <div class="bucket-section">
+    <div class="bucket-wrap">
+      <div id="bucketCards" style="position:relative;display:inline-block;left:50%;transform:translateX(-50%);">
+        <svg class="bucket-svg" id="bucketSvg" onclick="if(!bucketOpen)spillCards();else collectCards();" viewBox="0 -30 160 200" xmlns="http://www.w3.org/2000/svg" style="display:block;width:200px;height:212px;pointer-events:bounding-box;">
+          <filter id="bfx"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" seed="2" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5"/></filter>
+          <g filter="url(#bfx)">
+            <!-- 持ち手（楕円の両端から） -->
+            <path d="M18,38 A62,62 0 0 1 142,38" fill="none" stroke="#0a2e1e" stroke-width="6" stroke-linecap="round"/>
+            <!-- バケツ本体：上広・下狭の台形 -->
+            <path d="M18,38 L32,148 Q80,158 128,148 L142,38Z" fill="#0a2e1e" stroke="#0a2e1e" stroke-width="3" stroke-linejoin="round"/>
+            <!-- バケツ口（楕円） -->
+            <ellipse cx="80" cy="38" rx="62" ry="10" fill="rgb(255,250,200)" stroke="#0a2e1e" stroke-width="3"/>
+            <!-- バケツ底 -->
+            <path d="M32,148 Q80,162 128,148" fill="none" stroke="#0a2e1e" stroke-width="3" stroke-linecap="round"/>
+            <!-- クリック判定用透明矩形 -->
+            <rect x="0" y="-30" width="160" height="200" fill="transparent" pointer-events="all"/>
+          </g>
+        </svg>
+        <p class="bucket-hint" id="bucketHint">叩いてみて</p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- LOG -->
+<section id="log" style="background-color:#f4faf6;background-image:linear-gradient(rgba(0,180,100,.14) 2.5px, transparent 2.5px),linear-gradient(90deg, rgba(0,180,100,.14) 2.5px, transparent 2.5px);background-size:44px 44px;background-position:0 20px;padding-bottom:5rem;"><div class="sw">
+  <div class="rev"><span class="slbl">// RESEARCH LOGS &amp; BROADCASTS</span><h2 class="sttl">研究ログ</h2></div>
+  <div class="lgrid" id="logGrid" style="margin-bottom:2rem;"></div>
+  <div style="text-align:center;margin-top:1rem;margin-bottom:0;"><button id="logMoreBtn" style="display:none;font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.2em;color:var(--em2);border:1px solid rgba(0,200,120,.35);background:transparent;padding:.7rem 2rem;border-radius:50px;cursor:pointer;">+ もっと見る</button></div>
+  <script type="application/json" id="logData">[
+    {"url":"https://www.youtube.com","platform":"YOUTUBE","platformClass":"lc-yt","title":"ロボット犬を買ってみた！","date":"2024.11.03"},
+    {"url":"https://note.com","platform":"NOTE","platformClass":"lc-nt","title":"不登校の親子向けサービス【e:camo】β版リリース","date":"2024.09.15"},
+    {"url":"https://note.com","platform":"NOTE","platformClass":"lc-nt","title":"イノベーター育成プログラム始動に参加","date":"2024.07.22"}
+  ]</script>
+  <script>
+  (function(){
+    var data=JSON.parse(document.getElementById('logData').textContent);
+    var grid=document.getElementById('logGrid');
+    var pl={YOUTUBE:'▶ YOUTUBE',NOTE:'◈ NOTE',TIKTOK:'◉ TIKTOK'};
+    var INIT=3;
+    function renderCards(items){
+      items.forEach(function(item){
+        var a=document.createElement('a');
+        a.href=item.url; a.target='_blank'; a.className='lc';
+        a.innerHTML='<div class="lc-thumb '+item.platformClass+'"></div><div class="lc-body"><span class="lcplat">'+(pl[item.platform]||item.platform)+'</span><p class="lcttl">'+item.title+'</p><span class="lcmeta">'+item.date+'</span></div><span class="lcarr">→</span>';
+        grid.appendChild(a);
+      });
+    }
+    renderCards(data.slice(0,INIT));
+    var btn=document.getElementById('logMoreBtn');
+    if(data.length>INIT){
+      btn.style.display='block';
+      btn.addEventListener('click',function(){
+        renderCards(data.slice(INIT));
+        btn.style.display='none';
+      });
+    }
+  })();
+  </script>
+  <script type="application/json" id="logData">[
+    {"url":"https://www.youtube.com","platform":"YOUTUBE","platformClass":"lc-yt","title":"ロボット犬を買ってみた！","date":"2024.11.03"},
+    {"url":"https://note.com","platform":"NOTE","platformClass":"lc-nt","title":"不登校の親子向けサービス【e:camo】β版リリース","date":"2024.09.15"},
+    {"url":"https://note.com","platform":"NOTE","platformClass":"lc-nt","title":"イノベーター育成プログラム始動に参加","date":"2024.07.22"}
+  ]</script>
+</div></section>
+
+<!-- FOOTER -->
+<footer class="site-footer"><div class="sw">
+  <p class="footer-brand">変なの研究所 / ODD WORKS</p>
+  <div class="footer-links">
+      <a href="#" class="footer-link"><svg width="18" height="13" viewBox="0 0 18 13" xmlns="http://www.w3.org/2000/svg"><rect width="18" height="13" rx="3" fill="#FF0000"/><polygon points="7,2.5 7,10.5 13,6.5" fill="#fff"/></svg> YouTube</a>
+      <a href="#" class="footer-link"><svg width="15" height="17" viewBox="0 0 15 17" xmlns="http://www.w3.org/2000/svg"><rect width="15" height="17" rx="3" fill="#010101"/><path d="M10.5,1.5 C10.7,3.2 11.8,4.2 13.5,4.4 L13.5,6.5 C12.3,6.4 11.3,6 10.5,5.3 L10.5,10.2 C10.5,12.6 8.6,14.5 6.2,14.5 C3.8,14.5 1.9,12.6 1.9,10.2 C1.9,7.8 3.8,5.9 6.2,5.9 L6.2,8.1 C5,8.1 4.1,9 4.1,10.2 C4.1,11.4 5,12.3 6.2,12.3 C7.4,12.3 8.3,11.4 8.3,10.2 L8.3,1.5 Z" fill="#fff"/></svg> TikTok</a>
+      <a href="#" class="footer-link"><svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="16" rx="8" fill="#41C9B4"/><path d="M4,12 L4,4 Q4,3 5,3 L10,3 L12,5 L12,12 Q12,13 11,13 L5,13 Q4,13 4,12 Z" fill="white" stroke="none"/><path d="M10,3 L10,5 L12,5" fill="none" stroke="#41C9B4" stroke-width="1"/><line x1="6" y1="7" x2="10" y2="7" stroke="#888" stroke-width="1" stroke-linecap="round"/><line x1="6" y1="9" x2="10" y2="9" stroke="#888" stroke-width="1" stroke-linecap="round"/><line x1="6" y1="11" x2="9" y2="11" stroke="#888" stroke-width="1" stroke-linecap="round"/></svg> Note</a>
+      <a href="#" class="footer-link"><svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="igd" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f9ce34"/><stop offset="33%" stop-color="#ee2a7b"/><stop offset="66%" stop-color="#9b36b7"/><stop offset="100%" stop-color="#4c68d7"/></linearGradient></defs><rect width="16" height="16" rx="4" fill="url(#igd)"/><rect x="3" y="3" width="10" height="10" rx="3" fill="none" stroke="#fff" stroke-width="1.2"/><circle cx="8" cy="8" r="2.8" fill="none" stroke="#fff" stroke-width="1.2"/><circle cx="11.5" cy="4.5" r="0.9" fill="#fff"/></svg> Instagram</a>
+      <a href="#" class="footer-link"><svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="16" rx="3" fill="#00c878"/><rect x="2" y="4.5" width="12" height="8" rx="1.5" fill="white"/><polyline points="2,4.5 8,9 14,4.5" fill="none" stroke="#00c878" stroke-width="1.3" stroke-linejoin="round"/><line x1="2" y1="12.5" x2="6" y2="9" stroke="#ddd" stroke-width="0.8"/><line x1="14" y1="12.5" x2="10" y2="9" stroke="#ddd" stroke-width="0.8"/></svg> お問い合わせ</a>
+    </div>
+  <p class="footer-copy">© ODD WORKS — ALL RIGHTS RESERVED</p>
+</div></footer>
+  <div class="d-stripe d-stripe-bot"></div>
+
+<!-- ロボット犬ページ -->
+<div id="page-robot-dog" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;min-height:100dvh;z-index:1000;background:#f4faf6;overflow-y:auto;overscroll-behavior:none;-webkit-overflow-scrolling:touch;">
+  <nav id="subnav">
+  <div class="nav-logo" onclick="hidePage('robot-dog');window.scrollTo({top:0,behavior:'instant'});">
+    <svg width="36" height="24" viewBox="0 0 48 32" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <!-- 胴体 -->
+      <rect x="8" y="12" width="24" height="14" rx="4" stroke-width="2"/>
+      <!-- 頭（右） -->
+      <rect x="28" y="6" width="14" height="12" rx="3" stroke-width="2"/>
+      <!-- 耳 -->
+      <path d="M30,6 C29,2 27,0 26,2 C25,4 27,6 30,6" stroke-width="1.5"/>
+      <path d="M38,6 C39,2 41,0 42,2 C43,4 41,6 38,6" stroke-width="1.5"/>
+      <!-- 目 -->
+      <rect x="31" y="9" width="3" height="2" rx="1" fill="currentColor" stroke-width="0"/>
+      <rect x="37" y="9" width="3" height="2" rx="1" fill="currentColor" stroke-width="0"/>
+      <!-- アンテナ -->
+      <line x1="35" y1="6" x2="35" y2="2" stroke-width="1.5"/>
+      <circle cx="35" cy="1.5" r="1.5" fill="currentColor" stroke-width="0"/>
+      <!-- 足4本 -->
+      <line x1="13" y1="26" x2="12" y2="31" stroke-width="2"/>
+      <line x1="19" y1="26" x2="18" y2="31" stroke-width="2"/>
+      <line x1="25" y1="26" x2="26" y2="31" stroke-width="2"/>
+      <line x1="29" y1="26" x2="30" y2="31" stroke-width="2"/>
+      <!-- しっぽ -->
+      <path d="M8,17 C4,15 1,14 0,16 C1,18 4,18 6,16" stroke-width="1.8"/>
+    </svg>
+    変なの研究所
+  </div>
+  <ul class="nav-links">
+    <li class="nav-dropdown">
+      <a href="#research">RESEARCH ▾</a>
+      <div class="nav-dropdown-menu">
+        <span class="ndm-tag">// ACTIVE PROJECTS</span>
+        <a href="#" onclick="return false;">ロボット犬の挑戦</a>
+        <a href="#" onclick="showPage('gadgets');return false;">おもろい家具・アイデア雑貨</a>
+        <a href="#research">不登校伴走サービス</a>
+      </div>
+    </li>
+    <li><a href="#bucket" onclick="hidePage('robot-dog');if(document.getElementById('bucket')){event.preventDefault();document.getElementById('bucket').scrollIntoView({behavior:'smooth'});}">BUCKET</a></li>
+    <li><a href="#log" onclick="hidePage('robot-dog');if(document.getElementById('log')){event.preventDefault();document.getElementById('log').scrollIntoView({behavior:'smooth'});}">LOG</a></li>
+  </ul>
+  <div class="nav-r"><div class="ndot"></div><span id="ns3">ONLINE</span></div>
+</nav>
+  <div style="width:100%;height:65vh;min-height:280px;max-height:560px;position:relative;overflow:hidden;background:linear-gradient(160deg,#0a2e1e,#1a5a3a);display:flex;align-items:center;justify-content:center;">
+    <span style="font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.3em;color:rgba(0,220,130,.2);">// PHOTO HERE</span>
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.05),rgba(0,0,0,.55));"></div>
+    <div style="position:absolute;bottom:2.2rem;left:0;right:0;max-width:1100px;margin:0 auto;padding:0 1.5rem;width:100%;box-sizing:border-box;">
+      <span style="font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.28em;color:rgba(0,220,130,.7);display:block;margin-bottom:.5rem;">PROJ-001 // ROBOTICS // ACTIVE</span>
+      <h1 style="font-family:'DotGothic16',monospace;font-size:clamp(1.8rem,6vw,3rem);color:#fff;line-height:1.2;text-shadow:0 2px 20px rgba(0,0,0,.4);">ロボット犬の挑戦</h1>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:0 auto;padding:2.5rem 1.5rem 1rem;">
+    <p style="font-size:clamp(1rem,2.5vw,1.1rem);line-height:1.9;color:var(--day-mid);margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--day-bdr);">憧れのロボット犬を、ついに買った…！！使い道はまだ世の中にあまりないらしい。これから使い道をいっぱい発明していくよ〜🤖🐕</p>
+    <span style="font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.28em;color:var(--em2);opacity:.5;display:block;margin-bottom:1.5rem;">// RESEARCH LOGS</span>
+  </div>
+  <div style="max-width:1100px;margin:0 auto;padding:0 1.5rem 5rem;">
+    <div id="robotGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;"></div>
+    <script type="application/json" id="robotData">[
+      {"url":"https://www.youtube.com","thumbBg":"linear-gradient(135deg,#5a1010,#8a2020)","thumbIcon":"▶","date":"2024.11 // YOUTUBE","title":"ロボット犬を買ってみた！"}
+    ]</script>
+  </div>
+  <footer class="site-footer"><div class="sw">
+    <p class="footer-brand">変なの研究所 / ODD WORKS</p>
+    <div class="footer-links">
+      <a href="#" class="footer-link"><svg width="18" height="13" viewBox="0 0 18 13" xmlns="http://www.w3.org/2000/svg"><rect width="18" height="13" rx="3" fill="#FF0000"/><polygon points="7,2.5 7,10.5 13,6.5" fill="#fff"/></svg> YouTube</a>
+      <a href="#" class="footer-link"><svg width="15" height="17" viewBox="0 0 15 17" xmlns="http://www.w3.org/2000/svg"><rect width="15" height="17" rx="3" fill="#010101"/><path d="M10.5,1.5 C10.7,3.2 11.8,4.2 13.5,4.4 L13.5,6.5 C12.3,6.4 11.3,6 10.5,5.3 L10.5,10.2 C10.5,12.6 8.6,14.5 6.2,14.5 C3.8,14.5 1.9,12.6 1.9,10.2 C1.9,7.8 3.8,5.9 6.2,5.9 L6.2,8.1 C5,8.1 4.1,9 4.1,10.2 C4.1,11.4 5,12.3 6.2,12.3 C7.4,12.3 8.3,11.4 8.3,10.2 L8.3,1.5 Z" fill="#fff"/></svg> TikTok</a>
+      <a href="#" class="footer-link"><svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="16" rx="8" fill="#41C9B4"/><path d="M4,12 L4,4 Q4,3 5,3 L10,3 L12,5 L12,12 Q12,13 11,13 L5,13 Q4,13 4,12 Z" fill="white" stroke="none"/><path d="M10,3 L10,5 L12,5" fill="none" stroke="#41C9B4" stroke-width="1"/><line x1="6" y1="7" x2="10" y2="7" stroke="#888" stroke-width="1" stroke-linecap="round"/><line x1="6" y1="9" x2="10" y2="9" stroke="#888" stroke-width="1" stroke-linecap="round"/><line x1="6" y1="11" x2="9" y2="11" stroke="#888" stroke-width="1" stroke-linecap="round"/></svg> Note</a>
+      <a href="#" class="footer-link"><svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="igd" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f9ce34"/><stop offset="33%" stop-color="#ee2a7b"/><stop offset="66%" stop-color="#9b36b7"/><stop offset="100%" stop-color="#4c68d7"/></linearGradient></defs><rect width="16" height="16" rx="4" fill="url(#igd)"/><rect x="3" y="3" width="10" height="10" rx="3" fill="none" stroke="#fff" stroke-width="1.2"/><circle cx="8" cy="8" r="2.8" fill="none" stroke="#fff" stroke-width="1.2"/><circle cx="11.5" cy="4.5" r="0.9" fill="#fff"/></svg> Instagram</a>
+      <a href="#" class="footer-link"><svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="16" rx="3" fill="#00c878"/><rect x="2" y="4.5" width="12" height="8" rx="1.5" fill="white"/><polyline points="2,4.5 8,9 14,4.5" fill="none" stroke="#00c878" stroke-width="1.3" stroke-linejoin="round"/><line x1="2" y1="12.5" x2="6" y2="9" stroke="#ddd" stroke-width="0.8"/><line x1="14" y1="12.5" x2="10" y2="9" stroke="#ddd" stroke-width="0.8"/></svg> お問い合わせ</a>
+    </div>
+    <p class="footer-copy">© ODD WORKS — ALL RIGHTS RESERVED</p>
+  </div></footer>
+</div>
+
+<!-- 雑貨ページ -->
+<div id="page-gadgets" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;min-height:100dvh;z-index:1000;background:#f4faf6;overflow-y:auto;overscroll-behavior:none;-webkit-overflow-scrolling:touch;">
+  <nav id="subnav">
+  <div class="nav-logo" onclick="hidePage('gadgets');window.scrollTo({top:0,behavior:'instant'});">
+    <svg width="36" height="24" viewBox="0 0 48 32" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <!-- 胴体 -->
+      <rect x="8" y="12" width="24" height="14" rx="4" stroke-width="2"/>
+      <!-- 頭（右） -->
+      <rect x="28" y="6" width="14" height="12" rx="3" stroke-width="2"/>
+      <!-- 耳 -->
+      <path d="M30,6 C29,2 27,0 26,2 C25,4 27,6 30,6" stroke-width="1.5"/>
+      <path d="M38,6 C39,2 41,0 42,2 C43,4 41,6 38,6" stroke-width="1.5"/>
+      <!-- 目 -->
+      <rect x="31" y="9" width="3" height="2" rx="1" fill="currentColor" stroke-width="0"/>
+      <rect x="37" y="9" width="3" height="2" rx="1" fill="currentColor" stroke-width="0"/>
+      <!-- アンテナ -->
+      <line x1="35" y1="6" x2="35" y2="2" stroke-width="1.5"/>
+      <circle cx="35" cy="1.5" r="1.5" fill="currentColor" stroke-width="0"/>
+      <!-- 足4本 -->
+      <line x1="13" y1="26" x2="12" y2="31" stroke-width="2"/>
+      <line x1="19" y1="26" x2="18" y2="31" stroke-width="2"/>
+      <line x1="25" y1="26" x2="26" y2="31" stroke-width="2"/>
+      <line x1="29" y1="26" x2="30" y2="31" stroke-width="2"/>
+      <!-- しっぽ -->
+      <path d="M8,17 C4,15 1,14 0,16 C1,18 4,18 6,16" stroke-width="1.8"/>
+    </svg>
+    変なの研究所
+  </div>
+  <ul class="nav-links">
+    <li class="nav-dropdown">
+      <a href="#research">RESEARCH ▾</a>
+      <div class="nav-dropdown-menu">
+        <span class="ndm-tag">// ACTIVE PROJECTS</span>
+        <a href="#" onclick="return false;">ロボット犬の挑戦</a>
+        <a href="#" onclick="showPage('gadgets');return false;">おもろい家具・アイデア雑貨</a>
+        <a href="#research">不登校伴走サービス</a>
+      </div>
+    </li>
+    <li><a href="#bucket" onclick="hidePage('gadgets');if(document.getElementById('bucket')){event.preventDefault();document.getElementById('bucket').scrollIntoView({behavior:'smooth'});}">BUCKET</a></li>
+    <li><a href="#log" onclick="hidePage('gadgets');if(document.getElementById('log')){event.preventDefault();document.getElementById('log').scrollIntoView({behavior:'smooth'});}">LOG</a></li>
+  </ul>
+  <div class="nav-r"><div class="ndot"></div><span id="ns4">ONLINE</span></div>
+</nav>
+  <div style="width:100%;height:55vh;min-height:260px;max-height:500px;position:relative;overflow:hidden;">
+    <div style="width:100%;height:100%;background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80');background-size:cover;background-position:center;filter:brightness(.7) saturate(.8);"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.05),rgba(0,0,0,.6));"></div>
+    <div style="position:absolute;bottom:2.2rem;left:0;right:0;max-width:1200px;margin:0 auto;padding:0 1.5rem;width:100%;box-sizing:border-box;">
+      <span style="font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.28em;color:rgba(0,220,130,.7);display:block;margin-bottom:.5rem;">PROJ-002 // GADGETS // IN PROGRESS</span>
+      <h1 style="font-family:'DotGothic16',monospace;font-size:clamp(1.6rem,5vw,2.8rem);color:#fff;line-height:1.25;text-shadow:0 2px 20px rgba(0,0,0,.4);">おもろい家具・アイデア雑貨</h1>
+    </div>
+  </div>
+  <div style="max-width:1200px;margin:0 auto;padding:2.5rem 1.5rem 1rem;">
+    <p style="font-size:clamp(.95rem,2.5vw,1.08rem);line-height:1.9;color:var(--day-mid);margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--day-bdr);">目に入るとワクワクする、なんか癒される。そんな雑貨が作りたい！そこにある意味と使い道もちゃんと繋いだ、粋なプロダクトを作るぞ🧚</p>
+    <span style="font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.28em;color:var(--em2);opacity:.5;display:block;margin-bottom:1.5rem;">// ITEMS</span>
+  </div>
+  <div style="max-width:1200px;margin:0 auto;padding:0 1.5rem 5rem;">
+    <div id="gadgetsGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;"></div>
+    <script type="application/json" id="gadgetsData">[
+      {"thumbBg":"linear-gradient(135deg,#2e1a0a,#5a3a1a)","thumbIcon":"🧻","id":"ITEM-001","title":"トイレットペーパーのやつ","desc":"今作ってるところ、乞うご期待！"},
+      {"thumbBg":"linear-gradient(135deg,#1a2e0a,#3a5a1a)","thumbIcon":"🥟","id":"ITEM-002","title":"餃子のホルダーのやつ","desc":"今作ってるところ、乞うご期待！"},
+      {"thumbBg":"linear-gradient(135deg,#0a1a2e,#1a3a5a)","thumbIcon":"🎑","id":"ITEM-003","title":"浮世絵のやつ","desc":"今作ってるところ、乞うご期待！"},
+      {"thumbBg":"linear-gradient(135deg,#2e0a1a,#5a1a3a)","thumbIcon":"😏","id":"ITEM-004","title":"皮肉トレーナーのやつ","desc":"今作ってるところ、乞うご期待！"}
+    ]</script>
+  </div>
+  <footer class="site-footer"><div class="sw">
+    <p class="footer-brand">変なの研究所 / ODD WORKS</p>
+    <div class="footer-links">
+      <a href="#" class="footer-link"><svg width="18" height="13" viewBox="0 0 18 13" xmlns="http://www.w3.org/2000/svg"><rect width="18" height="13" rx="3" fill="#FF0000"/><polygon points="7,2.5 7,10.5 13,6.5" fill="#fff"/></svg> YouTube</a>
+      <a href="#" class="footer-link"><svg width="15" height="17" viewBox="0 0 15 17" xmlns="http://www.w3.org/2000/svg"><rect width="15" height="17" rx="3" fill="#010101"/><path d="M10.5,1.5 C10.7,3.2 11.8,4.2 13.5,4.4 L13.5,6.5 C12.3,6.4 11.3,6 10.5,5.3 L10.5,10.2 C10.5,12.6 8.6,14.5 6.2,14.5 C3.8,14.5 1.9,12.6 1.9,10.2 C1.9,7.8 3.8,5.9 6.2,5.9 L6.2,8.1 C5,8.1 4.1,9 4.1,10.2 C4.1,11.4 5,12.3 6.2,12.3 C7.4,12.3 8.3,11.4 8.3,10.2 L8.3,1.5 Z" fill="#fff"/></svg> TikTok</a>
+      <a href="#" class="footer-link"><svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="16" rx="8" fill="#41C9B4"/><path d="M4,12 L4,4 Q4,3 5,3 L10,3 L12,5 L12,12 Q12,13 11,13 L5,13 Q4,13 4,12 Z" fill="white" stroke="none"/><path d="M10,3 L10,5 L12,5" fill="none" stroke="#41C9B4" stroke-width="1"/><line x1="6" y1="7" x2="10" y2="7" stroke="#888" stroke-width="1" stroke-linecap="round"/><line x1="6" y1="9" x2="10" y2="9" stroke="#888" stroke-width="1" stroke-linecap="round"/><line x1="6" y1="11" x2="9" y2="11" stroke="#888" stroke-width="1" stroke-linecap="round"/></svg> Note</a>
+      <a href="#" class="footer-link"><svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="igd" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f9ce34"/><stop offset="33%" stop-color="#ee2a7b"/><stop offset="66%" stop-color="#9b36b7"/><stop offset="100%" stop-color="#4c68d7"/></linearGradient></defs><rect width="16" height="16" rx="4" fill="url(#igd)"/><rect x="3" y="3" width="10" height="10" rx="3" fill="none" stroke="#fff" stroke-width="1.2"/><circle cx="8" cy="8" r="2.8" fill="none" stroke="#fff" stroke-width="1.2"/><circle cx="11.5" cy="4.5" r="0.9" fill="#fff"/></svg> Instagram</a>
+      <a href="#" class="footer-link"><svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="16" rx="3" fill="#00c878"/><rect x="2" y="4.5" width="12" height="8" rx="1.5" fill="white"/><polyline points="2,4.5 8,9 14,4.5" fill="none" stroke="#00c878" stroke-width="1.3" stroke-linejoin="round"/><line x1="2" y1="12.5" x2="6" y2="9" stroke="#ddd" stroke-width="0.8"/><line x1="14" y1="12.5" x2="10" y2="9" stroke="#ddd" stroke-width="0.8"/></svg> お問い合わせ</a>
+    </div>
+    <p class="footer-copy">© ODD WORKS — ALL RIGHTS RESERVED</p>
+  </div></footer>
+</div>
+
+<div class="dbgbar">
+  <span class="di">STATUS: <b id="ds">NOMINAL</b></span>
+  <span class="di">LAT: <b>35.6895°N</b></span>
+  <span class="di">TIME: <b id="dt">--:--:--</b></span>
+</div>
+
+<script>
+var cr=document.getElementById('cr'),cd=document.getElementById('cd');
+document.addEventListener('mousemove',function(e){cr.style.left=e.clientX+'px';cr.style.top=e.clientY+'px';cd.style.left=e.clientX+'px';cd.style.top=e.clientY+'px';});
+var body=document.body,hero=document.getElementById('hero');
+window.addEventListener('scroll',function(){
+  var research = document.getElementById('research');
+  if(!research) return;
+  var start = window.innerHeight * 0.3;
+  var end   = research.offsetTop;
+  var p = Math.min(Math.max((window.scrollY - start) / (end - start), 0), 1);
+  var ease = p < 0.5 ? 2*p*p : -1+(4-2*p)*p;
+  var r = Math.round(10  + ease * (244 - 10));
+  var g = Math.round(46  + ease * (250 - 46));
+  var b = Math.round(30  + ease * (246 - 30));
+  hero.style.background = 'rgb('+r+','+g+','+b+')';
+  var band = document.getElementById('heroBand');
+  if(band) band.style.background = 'rgb('+r+','+g+','+b+')';
+  if(p > 0.5){ body.classList.add('day'); }
+  else        { body.classList.remove('day'); }
+});
+setInterval(function(){var n=new Date(),el=document.getElementById('dt');if(el)el.textContent=[n.getHours(),n.getMinutes(),n.getSeconds()].map(function(v){return String(v).padStart(2,'0');}).join(':');},1000);
+var isDanger=false;
+function openDanger(){var d=document.getElementById('danger');d.classList.add('on');d.scrollTop=0;body.classList.add('danger');document.getElementById('ns').textContent='⚠ RESTRICTED';document.getElementById('ds').textContent='BREACH';isDanger=true;setTimeout(function(){if(typeof drawWmap==='function')drawWmap();},150);}
+function closeDanger(){var d=document.getElementById('danger');d.style.opacity='0';d.style.transition='opacity .25s';setTimeout(function(){d.classList.remove('on');d.style.opacity='';d.style.transition='';body.classList.remove('danger');document.getElementById('ns').textContent='ONLINE';document.getElementById('ds').textContent='NOMINAL';isDanger=false;window.scrollTo({top:0,behavior:'instant'});},260);}
+var doorClicks=0;
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&isDanger)closeDanger();});
+var lc2=0;document.querySelector('.nav-logo').addEventListener('click',function(){if(++lc2>=5){openDanger();lc2=0;}});
+function showPage(id){var el=document.getElementById('page-'+id);if(!el)return;el.style.display='block';el.scrollTop=0;document.getElementById('nav').style.display='none';document.body.style.overflow='hidden';document.body.style.position='fixed';document.body.style.width='100%';}
+function hidePage(id){var el=document.getElementById('page-'+id);if(!el)return;el.style.display='none';document.getElementById('nav').style.display='';document.body.style.overflow='';document.body.style.position='';document.body.style.width='';}
+var bucketOpen=false;
+var bucketItems=[{text:'大人の<br>ドッジボール 🏐'},{text:'筋トレを<br>電気に変える ⚡'},{text:'ベルニーニ<br>みたいな<br>作品 🗿'},{text:'からくり<br>タンス 📦'},{text:'食べられる<br>おもちゃ 🍬'},{text:'ガラス細工<br>職人 🫧'},{text:'ゴルカム・BJ<br>みたいな漫画 📖'},{text:'発想力で<br>人助け 💡'},{text:'浮世絵<br>作家 🎑'},{text:'とびだす<br>絵本 📚'},{text:'スノードーム<br>みたいなの ❄️'},{text:'丸くて可愛い<br>家電 🌀'},{text:'遊べる<br>水槽 🐠'},{text:'壁掛け<br>カラクリ 🕰️'},{text:'ティッシュ構造<br>みたいなの 🧻'},{text:'カラオケ機<br>みたいなの 🎤'},{text:'仕掛けのある<br>日用品 🔧'},{text:'タイリング<br>雑貨 🔷'},{text:'もっといい<br>お土産 🎁'},{text:'世界の広さ<br>の可視化 🌍'},{text:'無意識の<br>解明 🧠'},{text:'ガラス細工 🫧'},{text:'アニメ<br>作る 🎬'},{text:'ボドゲ<br>作る 🎲'}];
+var bucketCards=document.getElementById('bucketCards'),bucketHint=document.getElementById('bucketHint'),bucketSvg=document.getElementById('bucketSvg');
+var cards=[];
+bucketItems.forEach(function(item){var d=document.createElement('div');d.className='bcard';d.innerHTML=item.text;bucketCards.insertBefore(d,bucketHint);cards.push(d);});
+function spillCards(){
+  bucketOpen=true;
+  bucketSvg.classList.add('buck-shaking');
+  bucketHint.textContent='しまう';
+  setTimeout(function(){bucketSvg.classList.remove('buck-shaking');},400);
+
+  var W=window.innerWidth;
+  var bRect=bucketCards.getBoundingClientRect();
+  var bCenterX=bRect.left+bRect.width/2;
+  if(!bCenterX || bCenterX<=0) bCenterX=W/2;
+
+  var spaceL=bCenterX-50;
+  var spaceR=W-bCenterX-50;
+  var hx=Math.min(spaceL, spaceR, 150);
+  if(hx<50) hx=120;
+
+  var cardW = 95;
+  var cardH = 85;
+  var gap   = -8;
+  var bH    = bRect.height || 212;
+  var n     = cards.length;
+
+  var cols = Math.min(n, Math.floor((hx * 2 + cardW) / (cardW + gap)));
+  if(cols < 1) cols = 1;
+  var rows = Math.ceil(n / cols);
+
+  var gridW = cols * cardW + (cols - 1) * gap;
+  var gridH = rows * cardH + (rows - 1) * gap;
+  var startX = -gridW / 2 + cardW / 2 + 30;
+
+  // バケツ周囲に散らばる位置を手動定義
+  var spread = Math.min(hx, 120);
+  var posTemplates = [
+    // 上段（タイトルに被らない範囲）
+    {x: -spread*0.8, y: -bH-cardH*1.2, r: -18},
+    {x:  spread*0.6, y: -bH-cardH*1.2, r: 14},
+    {x: -spread*0.1, y: -bH-cardH*1.4, r: 5},
+    {x:  spread*1.1, y: -bH-cardH*0.8, r: 22},
+    {x: -spread*1.1, y: -bH-cardH*0.8, r: -22},
+    // バケツすぐ上
+    {x: -spread*0.4, y: -bH-cardH*0.5, r: -10},
+    {x:  spread*0.4, y: -bH-cardH*0.5, r: 8},
+    // 左右中段
+    {x: -spread*1.4, y: -bH*0.7,       r: -25},
+    {x:  spread*1.4, y: -bH*0.6,       r: 20},
+    {x: -spread*1.4, y: -bH*0.1,       r: -18},
+    {x:  spread*1.4, y:  0,             r: 16},
+    // 左右下段
+    {x: -spread*1.3, y:  cardH*0.6,    r: -15},
+    {x:  spread*1.3, y:  cardH*0.5,    r: 18},
+    // 下段
+    {x: -spread*0.7, y:  cardH*1.2,    r: -12},
+    {x:  spread*0.1, y:  cardH*1.4,    r: 8},
+    {x:  spread*0.8, y:  cardH*1.2,    r: 15},
+    // 上段追加
+    {x: -spread*0.3, y: -bH-cardH*1.0, r: -8},
+    {x:  spread*0.9, y: -bH-cardH*1.4, r: 12},
+    {x: -spread*1.2, y: -bH-cardH*0.3, r: -20},
+    {x:  spread*1.2, y: -bH-cardH*0.3, r: 19},
+    {x: -spread*0.5, y:  cardH*1.8,    r: -12},
+    {x:  spread*0.5, y:  cardH*1.7,    r: 15},
+    {x: -spread*1.0, y: -bH*0.4,       r: -16},
+    {x:  spread*1.0, y: -bH*0.3,       r: 14},
+  ];
+  var positions = [];
+  for(var i = 0; i < n; i++){
+    var t = posTemplates[i % posTemplates.length];
+    // 少しランダム感を加える
+    var jx = (i % 3 - 1) * 8;
+    var jy = (i % 2) * 10 - 5;
+    positions.push({x: t.x + jx, y: t.y + jy, r: t.r + (i%2===0?-3:3)});
+  }
+
+  cards.forEach(function(card,i){
+    var p=positions[i]||{x:0,y:-200,r:0};
+    card.style.transition='all .6s cubic-bezier(.22,1,.36,1) '+(i*.08)+'s';
+    card.style.opacity='1';
+    card.style.transform='translateX(calc(-50% + '+p.x+'px)) translateY('+p.y+'px) rotate('+p.r+'deg)';
+    card.dataset.bx=p.x;
+    card.dataset.by=p.y;
+    makeDraggable(card);
+  });
+}
+
+function makeDraggable(el){
+  var startX,startY,startElX,startElY,isDragging=false;
+  var curR=(Math.random()-0.5)*20;
+  el.style.cursor='grab';
+  el.addEventListener('mousedown',function(e){
+    e.preventDefault();
+    isDragging=true;
+    startX=e.clientX;
+    startY=e.clientY;
+    el.style.transition='none';
+    el.style.zIndex='100';
+    el.style.cursor='grabbing';
+  });
+  document.addEventListener('mousemove',function(e){
+    if(!isDragging)return;
+    var dx=e.clientX-startX;
+    var dy=e.clientY-startY;
+    var nx=parseFloat(el.dataset.bx||0)+dx;
+    var ny=parseFloat(el.dataset.by||0)+dy;
+    el.style.transform='translateX(calc(-50% + '+nx+'px)) translateY('+ny+'px) rotate('+curR+'deg)';
+    el._nx=nx; el._ny=ny;
+  });
+  document.addEventListener('mouseup',function(){
+    if(!isDragging)return;
+    if(el._nx!==undefined){el.dataset.bx=el._nx;el.dataset.by=el._ny;}
+    isDragging=false;
+    el.style.zIndex='';
+    el.style.cursor='grab';
+  });
+  el.addEventListener('touchstart',function(e){
+    e.preventDefault();
+    var t=e.touches[0];
+    isDragging=true;
+    startX=t.clientX; startY=t.clientY;
+    el.style.transition='none';
+    el.style.zIndex='100';
+  },{passive:false});
+  el.addEventListener('touchmove',function(e){
+    if(!isDragging)return;
+    e.preventDefault();
+    var t=e.touches[0];
+    var dx=t.clientX-startX, dy=t.clientY-startY;
+    var nx=parseFloat(el.dataset.bx||0)+dx;
+    var ny=parseFloat(el.dataset.by||0)+dy;
+    el.style.transform='translateX(calc(-50% + '+nx+'px)) translateY('+ny+'px) rotate('+curR+'deg)';
+    el._nx=nx; el._ny=ny;
+  },{passive:false});
+  el.addEventListener('touchend',function(){
+    if(el._nx!==undefined){el.dataset.bx=el._nx;el.dataset.by=el._ny;}
+    isDragging=false;
+    el.style.zIndex='';
+  });
+}
+function collectCards(){bucketOpen=false;bucketHint.textContent='叩いてみて';cards.forEach(function(card){card.style.transition='all .4s cubic-bezier(.55,0,1,.45)';card.style.opacity='0';card.style.transform='translateX(-50%) translateY(20px)';});}
+
+
+/* log cards rendered in HTML */
+(function(){var el=document.getElementById('robotData'),grid=document.getElementById('robotGrid');if(!el||!grid)return;JSON.parse(el.textContent).forEach(function(item){var a=document.createElement('a');a.href=item.url;a.target='_blank';a.style.cssText='display:flex;flex-direction:column;border:1px solid var(--day-bdr);border-radius:8px;background:#fff;text-decoration:none;color:var(--day-ink);overflow:hidden;';var h='<div style="width:100%;aspect-ratio:16/9;background:'+item.thumbBg+';display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:.65;">'+item.thumbIcon+'</div>';h+='<div style="padding:.9rem 1rem;"><p style="font-family:monospace;font-size:.58rem;color:var(--em2);opacity:.5;margin-bottom:.3rem;">'+item.date+'</p><p style="font-family:monospace;font-size:.88rem;line-height:1.5;">'+item.title+'</p></div>';a.innerHTML=h;grid.appendChild(a);});})();
+(function(){var el=document.getElementById('gadgetsData'),grid=document.getElementById('gadgetsGrid');if(!el||!grid)return;JSON.parse(el.textContent).forEach(function(item){var d=document.createElement('div');d.style.cssText='border:1px solid var(--day-bdr);border-radius:10px;overflow:hidden;background:#fff;';var h='<div style="width:100%;aspect-ratio:4/3;background:'+item.thumbBg+';display:flex;align-items:center;justify-content:center;font-size:2.5rem;opacity:.35;">'+item.thumbIcon+'</div>';h+='<div style="padding:.9rem 1rem;"><p style="font-size:.55rem;color:var(--em2);opacity:.5;margin-bottom:.3rem;">'+item.id+' // 準備中</p><p style="font-family:monospace;font-size:.85rem;line-height:1.5;color:var(--day-ink);">'+item.title+'</p><p style="font-size:.78rem;line-height:1.6;color:var(--day-mid);margin-top:.4rem;opacity:.7;">'+item.desc+'</p></div>';d.innerHTML=h;grid.appendChild(d);});})();
+(function(){
+  var labels=['// PHASE_04 INITIATION — CLASSIFIED','// NEXT EXPERIMENT — TARGET UNKNOWN','// ████████ — OPERATION PENDING','// SYNCHRONIZATION EVENT — RESTRICTED','// ANOMALY DETECTED — COUNTDOWN ACTIVE'];
+  var subs=['██████████ — ACCESS DENIED','// REASON: ████ // CLEARANCE: LEVEL 9 REQUIRED','対象詳細は機密指定されています','// TARGET COORDINATES: ██.████°N ███.████°E'];
+  function ri(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+  var target=new Date(Date.now()+(ri(7,73)*86400+ri(0,23)*3600+ri(0,59)*60+ri(0,59))*1000);
+  var dEl=document.getElementById('mcdD'),hEl=document.getElementById('mcdH'),mEl=document.getElementById('mcdM'),sEl=document.getElementById('mcdS');
+  var lEl=document.getElementById('mcdLabel'),sbEl=document.getElementById('mcdSub');
+  if(lEl)lEl.textContent=labels[ri(0,labels.length-1)];
+  if(sbEl)sbEl.textContent=subs[ri(0,subs.length-1)];
+  function pad(n){return n<10?'0'+n:''+n;}
+  function tick(){if(!dEl)return;var diff=Math.max(0,target-Date.now());dEl.textContent=pad(Math.floor(diff/86400000));hEl.textContent=pad(Math.floor(diff%86400000/3600000));mEl.textContent=pad(Math.floor(diff%3600000/60000));sEl.textContent=pad(Math.floor(diff%60000/1000));}
+  tick();setInterval(tick,1000);
+})();
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script>
+var wmapDrawn=false;
+function drawWmap(){
+  if(wmapDrawn)return;
+  var container=document.getElementById('wmapD3');
+  if(!container)return;
+  wmapDrawn=true;
+  var W=900,H=520;
+  var svg=d3.select('#wmapD3').append('svg').attr('viewBox','0 0 '+W+' '+H).attr('width','100%').style('display','block');
+  svg.append('rect').attr('width',W).attr('height',H).attr('fill','#040002');
+  var proj=d3.geoNaturalEarth1().scale(W/4.8).translate([W/2,H/2]);
+  var path=d3.geoPath(proj);
+  svg.append('path').datum(d3.geoGraticule()()).attr('d',path).attr('fill','none').attr('stroke','rgba(255,30,30,.07)').attr('stroke-width',.4);
+  var wmapData=JSON.parse(document.getElementById('wmapData').textContent);
+  var pins=[
+    {id:'tokyo',lon:139,lat:35,label:'★ HQ',hq:true},
+    {id:'london',lon:0,lat:51,label:'',hq:false},
+    {id:'newyork',lon:-74,lat:40,label:'',hq:false},
+    {id:'norway',lon:10,lat:60,label:'',hq:false},
+    {id:'brazil',lon:-47,lat:-15,label:'',hq:false}
+  ];
+  d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(function(world){
+    var countries=topojson.feature(world,world.objects.countries);
+    svg.selectAll('path.land').data(countries.features).join('path')
+      .attr('class','land').attr('d',path)
+      .attr('fill',function(d){return d.id===392?'rgba(255,50,50,.55)':'rgba(180,28,28,.25)';})
+      .attr('stroke',function(d){return d.id===392?'rgba(255,70,70,.9)':'rgba(220,40,40,.4)';})
+      .attr('stroke-width',function(d){return d.id===392?1.2:.4;});
+    svg.append('path').datum(topojson.mesh(world,world.objects.countries,function(a,b){return a!==b;}))
+      .attr('d',path).attr('fill','none').attr('stroke','rgba(255,40,40,.18)').attr('stroke-width',.3);
+    var hq=pins.find(function(p){return p.hq;}),hqPt=proj([hq.lon,hq.lat]);
+    pins.filter(function(p){return !p.hq;}).forEach(function(p){
+      var pt=proj([p.lon,p.lat]);
+      svg.append('line').attr('x1',hqPt[0]).attr('y1',hqPt[1]).attr('x2',pt[0]).attr('y2',pt[1]).attr('stroke','rgba(255,30,70,.2)').attr('stroke-width',.7).attr('stroke-dasharray','4 5');
+    });
+    pins.forEach(function(p){
+      var pt=proj([p.lon,p.lat]),cx=pt[0],cy=pt[1];
+      var g=svg.append('g').attr('class','wmap-pin').attr('data-id',p.id).style('cursor',p.hq?'default':'pointer');
+      if(p.hq){
+        var ring=g.append('circle').attr('cx',cx).attr('cy',cy).attr('r',11).attr('fill','rgba(255,30,70,.12)').attr('stroke','rgba(255,30,70,.75)').attr('stroke-width',1.8);
+        ring.append('animate').attr('attributeName','r').attr('values','11;20;11').attr('dur','1.8s').attr('repeatCount','indefinite');
+        ring.append('animate').attr('attributeName','opacity').attr('values','1;.2;1').attr('dur','1.8s').attr('repeatCount','indefinite');
+        g.append('circle').attr('cx',cx).attr('cy',cy).attr('r',5).attr('fill','rgba(255,30,70,.95)');
+      }else{
+        var ring2=g.append('circle').attr('cx',cx).attr('cy',cy).attr('r',7).attr('fill','rgba(255,30,70,.08)').attr('stroke','rgba(255,30,70,.45)').attr('stroke-width',1.2);
+        ring2.append('animate').attr('attributeName','r').attr('values','7;13;7').attr('dur','2.5s').attr('repeatCount','indefinite');
+        ring2.append('animate').attr('attributeName','opacity').attr('values','1;.2;1').attr('dur','2.5s').attr('repeatCount','indefinite');
+        g.append('circle').attr('cx',cx).attr('cy',cy).attr('r',3).attr('fill','rgba(255,100,100,.85)');
+      }
+      g.append('text').attr('x',cx).attr('y',cy-(p.hq?15:12)).attr('text-anchor','middle').attr('font-family','Share Tech Mono,monospace').attr('font-size',p.hq?9:8).attr('fill',p.hq?'rgba(255,210,210,.92)':'rgba(255,155,155,.78)').text(p.label);
+      if(false){
+        g.on('click',function(){
+          var d=wmapData[p.id];if(!d)return;
+          var inner=document.getElementById('wmapPanelInner'),panel=document.getElementById('wmapPanel');if(!inner||!panel)return;
+          var h='<div class="wmap-loc-label">'+d.label+'</div><div class="wmap-loc-status">'+d.status+'</div>';
+          d.experiments.forEach(function(exp){h+='<div class="wmap-exp"><div class="wmap-exp-no">'+exp.no+'</div><div class="wmap-exp-st">'+exp.st+'</div><p class="wmap-exp-ttl">'+exp.ttl+'</p><p class="wmap-exp-note">// '+exp.note+'</p></div>';});
+          inner.innerHTML=h;panel.classList.add('open');
+        });
+      }
+    });
+    document.getElementById('wmapClose').addEventListener('click',function(){document.getElementById('wmapPanel').classList.remove('open');});
+  }).catch(function(){
+    d3.select('#wmapD3').append('p').style('color','rgba(255,30,70,.4)').style('text-align','center').style('font-family','monospace').style('padding','2rem').text('// MAP DATA LOADING...');
+  });
+}
+</script>
+
+<script>
+(function(){
+  
+})();
+</script>
+
+
+
+
+<script>
+document.querySelectorAll('.rc').forEach(function(card){
+  var lever = card.querySelector('.rc-knob-lever');
+  if(!lever) return;
+  card.addEventListener('mouseenter', function(){
+    lever.style.transform = 'rotate(-30deg)';
+  });
+  card.addEventListener('mouseleave', function(){
+    lever.style.transform = 'rotate(0deg)';
+  });
+});
+</script>
+
+
+<script>
+(function(){
+  var pages = ['robot-dog', 'gadgets'];
+  pages.forEach(function(pageId){
+    var el = document.getElementById('page-' + pageId);
+    if(!el) return;
+    var startX = 0, startY = 0;
+    el.addEventListener('touchstart', function(e){
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, {passive: true});
+    el.addEventListener('touchend', function(e){
+      var dx = e.changedTouches[0].clientX - startX;
+      var dy = e.changedTouches[0].clientY - startY;
+      // 右スワイプ: 横移動が80px以上、縦移動が横の半分以下
+      if(dx > 80 && Math.abs(dy) < dx * 0.5){
+        hidePage(pageId);
+        window.scrollTo({top:0, behavior:'instant'});
+      }
+    }, {passive: true});
+  });
+})();
+</script>
+
+
+<script>
+(function(){
+  var wrap = document.getElementById('pullCordWrap');
+  var bead = document.getElementById('pullCordBead');
+  if(!wrap || !bead) return;
+  bead.setAttribute('opacity','1');
+
+  // researchセクションが見え始めたタイミングでトリガー
+  var research = document.getElementById('research');
+  if(!research) return;
+
+  window.addEventListener('scroll', function(){
+    var rect = research.getBoundingClientRect();
+    if(rect.top <= window.innerHeight * 0.85){
+      wrap.classList.add('stretched');
+    } else {
+      // 上に戻ったらリセット
+      wrap.classList.remove('stretched');
+    }
+  }, {passive: true});
+})();
+</script>
+</body>
+</html>
