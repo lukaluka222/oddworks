@@ -722,7 +722,7 @@ window.addEventListener('pageshow', function(){ window.scrollTo(0,0); });
   <div class="lgrid" id="logGrid" style="margin-bottom:2rem;"></div>
   <div style="text-align:center;margin-top:1rem;margin-bottom:0;"><button id="logMoreBtn" style="display:none;font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.2em;color:var(--em2);border:1px solid rgba(0,200,120,.35);background:#fff;padding:.7rem 2rem;border-radius:50px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.08);">+ もっと見る</button></div>
   <script type="application/json" id="logData">[
-    {"url":"https://peatix.com/event/5108067","platform":"EVENT","platformClass":"lc-ev","title":"8/6 恵比寿のバーで1日店長 with ロボット犬やります！","date":"2026.08.06"},
+    {"url":"https://peatix.com/event/5108067","platform":"EVENT","platformClass":"lc-ev","thumb":"tencho icon.JPG","title":"8/6 恵比寿のバーで1日店長 with ロボット犬やります！","date":"2026.08.06"},
     {"url":"https://www.youtube.com","platform":"YOUTUBE","platformClass":"lc-yt","title":"ロボット犬を買ってみた！","date":"2026.08.01"},
     {"url":"https://note.com","platform":"NOTE","platformClass":"lc-nt","title":"不登校の親子向けサービス【e:camo】β版リリース","date":"2026.05.25"},
     {"url":"https://note.com","platform":"NOTE","platformClass":"lc-nt","title":"イノベーター育成プログラム始動に参加","date":"2025.10"}
@@ -745,7 +745,8 @@ window.addEventListener('pageshow', function(){ window.scrollTo(0,0); });
         }
         a.className='lc';
         a.style.cursor='pointer';
-        a.innerHTML='<div class="lc-thumb '+item.platformClass+'"></div><div class="lc-body"><span class="lcplat">'+(pl[item.platform]||item.platform)+'</span><p class="lcttl">'+item.title+'</p><span class="lcmeta">'+item.date+'</span></div><span class="lcarr">→</span>';
+        var thumbStyle=item.thumb?(' style="background-image:url(\''+item.thumb+'\')"'):'';
+        a.innerHTML='<div class="lc-thumb '+item.platformClass+'"'+thumbStyle+'></div><div class="lc-body"><span class="lcplat">'+(pl[item.platform]||item.platform)+'</span><p class="lcttl">'+item.title+'</p><span class="lcmeta">'+item.date+'</span></div><span class="lcarr">→</span>';
         grid.appendChild(a);
       });
     }
