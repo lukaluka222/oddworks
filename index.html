@@ -7,7 +7,7 @@
 <script>document.documentElement.className+=" js";</script>
 <script>
 /* ヒーロー新旧切替: ?hero=new で新、?hero=classic で旧。デフォルトを新にしたいときは下の 'classic' を 'new' に変える */
-(function(){var HERO_DEFAULT='classic';var m=location.search.match(/[?&]hero=(new|classic)/),v=m?m[1]:HERO_DEFAULT;if(v==='new')document.documentElement.className+=' hero2';})();
+(function(){var HERO_DEFAULT='classic';var m=location.search.match(/[?&]hero=(new|classic|kt2)/),v=m?m[1]:HERO_DEFAULT;if(v==='new')document.documentElement.className+=' hero2';if(v==='kt2')document.documentElement.className+=' hero2 kt2';})();
 </script>
 <title>変なの研究所 — ODD WORKS</title>
 <meta name="description" content="役に立つかもしれないし、立たないかもしれない。変なものをガチで作っています。ロボット犬・明晰夢・不登校伴走サービス・からくり箪笥。変なの研究所 / ODD WORKS">
@@ -207,6 +207,25 @@ body:not(.day) .lcmeta{color:rgba(150,255,200,.38);}
 .dbgbar{position:fixed;bottom:0;left:0;width:100%;z-index:600;display:none;gap:1.5rem;padding:.35rem 1.5rem;background:rgba(4,0,2,.7);border-top:1px solid rgba(255,20,40,.1);font-family:'Share Tech Mono',monospace;font-size:.48rem;letter-spacing:.18em;color:rgba(255,30,70,.25);pointer-events:none;opacity:0;transition:opacity .3s;}
 body.danger 
 .di b{color:rgba(255,80,100,.45);}
+
+/* ===== hero kt2 (only when html.kt2) ===== */
+.kt2-only{display:none;}
+.kt2 .kt2-only{display:block;}
+.kt2 .kt2-stamp{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.2em;color:#ff5a4a;border:1.5px solid #ff5a4a;position:absolute;left:6%;top:-2.6rem;padding:.25rem .6rem;transform:rotate(-4deg);margin:0;opacity:.85;white-space:nowrap;}
+.kt2 .hero-body{margin-top:0;}
+.kt2 .kt2-boss{font-weight:900;font-size:clamp(1.15rem,3.6vw,1.7rem);color:#d8ff3a;letter-spacing:.08em;margin:0 0 .5rem;text-shadow:0 0 16px rgba(216,255,58,.45);animation:ecin .9s cubic-bezier(.22,1,.36,1) .8s backwards;}
+.kt2 .kt2-boss small{display:block;font-weight:400;font-size:.72rem;letter-spacing:.12em;color:rgba(150,230,190,.7);margin-top:.35rem;text-shadow:none;}
+#kt2Buddy{display:none;}
+.kt2 #kt2Buddy{display:block;position:fixed;right:12px;bottom:14px;z-index:900;width:92px;pointer-events:none;transition:transform .35s cubic-bezier(.22,1,.36,1);will-change:transform;}
+.kt2 #kt2Buddy .kb-win{pointer-events:auto;cursor:pointer;width:92px;height:150px;border-radius:14px;overflow:hidden;border:2px solid #00e6b4;box-shadow:0 6px 22px rgba(0,0,0,.35),0 0 18px rgba(0,230,180,.35);background:#0a2e1e;position:relative;}
+.kt2 #kt2Buddy video,.kt2 #kt2Buddy .kb-win img{width:100%;height:100%;object-fit:cover;display:block;}
+.kt2 #kt2Buddy .kb-tag{position:absolute;left:0;right:0;bottom:0;background:rgba(10,46,30,.82);color:#d8ff3a;font:600 .55rem 'Share Tech Mono',monospace;letter-spacing:.15em;text-align:center;padding:2px 0;}
+.kt2 #kt2Buddy .kb-say{pointer-events:none;position:absolute;right:100%;bottom:70px;margin-right:8px;width:max-content;max-width:min(190px,52vw);background:#fff;color:#0a2e1e;font-size:.72rem;font-weight:700;line-height:1.5;padding:.45rem .65rem;border-radius:12px 12px 2px 12px;box-shadow:0 4px 14px rgba(0,0,0,.25);opacity:0;transform:translateY(6px) scale(.96);transition:opacity .3s,transform .3s;}
+.kt2 #kt2Buddy .kb-say.on{opacity:1;transform:none;}
+.kt2 #kt2Buddy.bump{animation:kbBump .5s cubic-bezier(.3,.7,.4,1) 1;}
+@keyframes kbBump{0%{translate:0 0}35%{translate:0 -22px}100%{translate:0 0}}
+@media(max-width:600px){.kt2 #kt2Buddy{width:72px;right:8px;bottom:10px}.kt2 #kt2Buddy .kb-win{width:72px;height:118px}}
+@media(prefers-reduced-motion:reduce){.kt2 #kt2Buddy{transition:none}}
 /* ===== hero v2 (only when html.hero2) ===== */
 .hero2 .hsketch [class]{transform-box:fill-box;}
 .hero2 .hero::before{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 1px,transparent 1px 3px);opacity:.35;}
@@ -681,8 +700,11 @@ document.addEventListener('DOMContentLoaded', function(){ setTimeout(hideBootCov
 
   </svg>
   <div class="hero-body">
+    <span class="kt2-only kt2-stamp">EXPERIMENT No.001 // SUBJECT: KT-2</span>
     <span class="hero-tag">ODD WORKS // EST. ████ // GHOST PROTOCOL LAB</span>
     <h1 class="hero-title"><span class="glitch" data-text="変なの">変なの</span>研究所</h1>
+
+    <p class="kt2-only kt2-boss">所長は金魚です。<small>ロボット犬KT-2の頭の中で、金魚が操縦しています。</small></p>
 
     <p class="hero-catch">役に立つかもしれないし、立たないかもしれない。<br>変なものをガチで作っています。</p>
   </div>
@@ -1544,6 +1566,50 @@ document.querySelectorAll('.rc').forEach(function(card){
   (function zl(){setTimeout(function(){zap();zl();},2600+Math.random()*3600);})();
   (function bl(){setTimeout(function(){kick(bird,'hop',800);bl();},3800+Math.random()*3200);})();
   (function rl(){setTimeout(function(){kick(robot,'hop',700);rl();},6200+Math.random()*4000);})();
+})();
+</script>
+<div id="kt2Buddy" aria-live="polite"><div class="kb-say" id="kbSay"></div><div class="kb-win" id="kbWin" role="button" aria-label="所長（KT-2）に話しかける"><img src="kt2-loop.jpg" alt="ロボット犬KT-2" id="kbImg"><span class="kb-tag">KT-2 / 所長代理</span></div></div>
+<script>
+(function(){
+  if(!document.documentElement.classList.contains('kt2'))return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var buddy=document.getElementById('kt2Buddy'),say=document.getElementById('kbSay'),win=document.getElementById('kbWin');
+  if(!buddy)return;
+  /* load the clip only for kt2 mode */
+  if(!reduce){var v=document.createElement('video');v.src='kt2-loop.mp4';v.poster='kt2-loop.jpg';v.muted=true;v.loop=true;v.playsInline=true;v.setAttribute('playsinline','');v.autoplay=true;var im=document.getElementById('kbImg');win.replaceChild(v,im);var pl=v.play();if(pl&&pl.catch)pl.catch(function(){});}
+  var LINES={
+    hero:['所長です。ぶくぶく。','金魚が操縦しています。','ようこそ。ぶくぶく…'],
+    research:['研究中です。ぶくぶく。','これ全部、本気です。','不登校の親子向けは、ほんとに真面目。'],
+    bucket:['変なものは、ここに溜まります。','役に立つかは…未定です。'],
+    log:['最近の成果です。ぶくぶく。','SONYにも行きました。','東京ゲームショウにも出ました。'],
+    foot:['おつかれさまです。','また来てね。ぶくぶく。']
+  };
+  var map=[['hero','hero'],['research','research'],['bucket','bucket'],['log','log']];
+  var cur='',tm=null,idx={};
+  function talk(k,force){
+    var a=LINES[k];if(!a)return;idx[k]=((idx[k]||0)+(force?1:0))%a.length;
+    say.textContent=a[idx[k]];say.classList.add('on');
+    buddy.classList.remove('bump');void buddy.offsetWidth;buddy.classList.add('bump');
+    clearTimeout(tm);tm=setTimeout(function(){say.classList.remove('on');},3800);
+  }
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&e.target.dataset.kb!==cur){cur=e.target.dataset.kb;talk(cur,false);}});},{threshold:.35});
+  map.forEach(function(m){var el=document.getElementById(m[0]);if(el){el.dataset.kb=m[1];io.observe(el);}});
+  var ft=document.querySelector('.site-footer');if(ft){ft.dataset.kb='foot';io.observe(ft);}
+  win.addEventListener('click',function(){talk(cur||'hero',true);});
+  /* follow the scroll: sway with velocity, tilt, settle */
+  if(!reduce){
+    var lastY=window.scrollY,ticking=false;
+    window.addEventListener('scroll',function(){
+      if(ticking)return;ticking=true;
+      requestAnimationFrame(function(){
+        var y=window.scrollY,d=Math.max(-60,Math.min(60,y-lastY));lastY=y;
+        buddy.style.transform='translateY('+(-d*0.5).toFixed(1)+'px) rotate('+(d*0.12).toFixed(1)+'deg)';
+        clearTimeout(buddy._t);buddy._t=setTimeout(function(){buddy.style.transform='';},140);
+        ticking=false;
+      });
+    },{passive:true});
+  }
+  setTimeout(function(){talk('hero',false);},1800);
 })();
 </script>
 </body>
