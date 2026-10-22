@@ -7,7 +7,7 @@
 <script>document.documentElement.className+=" js";</script>
 <script>
 /* ヒーロー新旧切替: ?hero=new で新、?hero=classic で旧。デフォルトを新にしたいときは下の 'classic' を 'new' に変える */
-(function(){var HERO_DEFAULT='classic';var m=location.search.match(/[?&]hero=(new|classic|kt2)/),v=m?m[1]:HERO_DEFAULT;if(v==='new')document.documentElement.className+=' hero2';if(v==='kt2')document.documentElement.className+=' hero2 kt2';})();
+(function(){var HERO_DEFAULT='classic';var m=location.search.match(/[?&]hero=(new|classic|kt2|3d)/),v=m?m[1]:HERO_DEFAULT;if(v==='new')document.documentElement.className+=' hero2';if(v==='kt2')document.documentElement.className+=' hero2 kt2';if(v==='3d')document.documentElement.className+=' hero2 d3';})();
 </script>
 <title>変なの研究所 — ODD WORKS</title>
 <meta name="description" content="役に立つかもしれないし、立たないかもしれない。変なものをガチで作っています。ロボット犬・明晰夢・不登校伴走サービス・からくり箪笥。変なの研究所 / ODD WORKS">
@@ -208,13 +208,21 @@ body:not(.day) .lcmeta{color:rgba(150,255,200,.38);}
 body.danger 
 .di b{color:rgba(255,80,100,.45);}
 
+
+/* ===== hero 3d (only when html.d3) ===== */
+#dome3d{display:none;}
+.d3 #dome3d{display:block;position:absolute;z-index:1;right:9%;bottom:7%;width:min(26vw,330px);aspect-ratio:3/4;pointer-events:none;filter:drop-shadow(0 10px 30px rgba(0,230,180,.18));animation:ecin 1.1s cubic-bezier(.22,1,.36,1) .5s backwards;}
+.d3 #dome3d canvas{width:100%;height:100%;display:block;}
+.d3 #dome3d.pop{animation:domePop .5s cubic-bezier(.3,.7,.4,1) 1;}
+@keyframes domePop{0%{transform:scale(1)}30%{transform:scale(1.07) rotate(-2deg)}100%{transform:none}}
+@media(max-width:700px){.d3 #dome3d{right:1%;bottom:3%;width:52vw;}}
 /* ===== hero kt2 (only when html.kt2) ===== */
 .kt2-only{display:none;}
-.kt2 .kt2-only{display:block;}
-.kt2 .kt2-stamp{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.2em;color:#ff5a4a;border:1.5px solid #ff5a4a;position:absolute;left:6%;top:-2.6rem;padding:.25rem .6rem;transform:rotate(-4deg);margin:0;opacity:.85;white-space:nowrap;}
-.kt2 .hero-body{margin-top:0;}
-.kt2 .kt2-boss{font-weight:900;font-size:clamp(1.15rem,3.6vw,1.7rem);color:#d8ff3a;letter-spacing:.08em;margin:0 0 .5rem;text-shadow:0 0 16px rgba(216,255,58,.45);animation:ecin .9s cubic-bezier(.22,1,.36,1) .8s backwards;}
-.kt2 .kt2-boss small{display:block;font-weight:400;font-size:.72rem;letter-spacing:.12em;color:rgba(150,230,190,.7);margin-top:.35rem;text-shadow:none;}
+.kt2 .kt2-only,.d3 .kt2-only{display:block;}
+.kt2 .kt2-stamp,.d3 .kt2-stamp{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.2em;color:#ff5a4a;border:1.5px solid #ff5a4a;position:absolute;left:6%;top:-2.6rem;padding:.25rem .6rem;transform:rotate(-4deg);margin:0;opacity:.85;white-space:nowrap;}
+.kt2 .hero-body,.d3 .hero-body{margin-top:0;}
+.kt2 .kt2-boss,.d3 .kt2-boss{font-weight:900;font-size:clamp(1.15rem,3.6vw,1.7rem);color:#d8ff3a;letter-spacing:.08em;margin:0 0 .5rem;text-shadow:0 0 16px rgba(216,255,58,.45);animation:ecin .9s cubic-bezier(.22,1,.36,1) .8s backwards;}
+.kt2 .kt2-boss small,.d3 .kt2-boss small{display:block;font-weight:400;font-size:.72rem;letter-spacing:.12em;color:rgba(150,230,190,.7);margin-top:.35rem;text-shadow:none;}
 #kt2Buddy{display:none;}
 .kt2 #kt2Buddy{display:block;position:fixed;right:12px;bottom:14px;z-index:900;width:92px;pointer-events:none;transition:transform .35s cubic-bezier(.22,1,.36,1);will-change:transform;}
 .kt2 #kt2Buddy .kb-win{pointer-events:auto;cursor:pointer;width:92px;height:150px;border-radius:14px;overflow:hidden;border:2px solid #00e6b4;box-shadow:0 6px 22px rgba(0,0,0,.35),0 0 18px rgba(0,230,180,.35);background:#0a2e1e;position:relative;}
@@ -1567,6 +1575,9 @@ document.querySelectorAll('.rc').forEach(function(card){
   (function bl(){setTimeout(function(){kick(bird,'hop',800);bl();},3800+Math.random()*3200);})();
   (function rl(){setTimeout(function(){kick(robot,'hop',700);rl();},6200+Math.random()*4000);})();
 })();
+</script>
+<script>
+(function(){if(!document.documentElement.classList.contains('d3'))return;try{import('./hero3d.js').catch(function(e){console.warn('hero3d',e);var w=document.getElementById('dome3d');if(w)w.remove();});}catch(e){}})();
 </script>
 <div id="kt2Buddy" aria-live="polite"><div class="kb-say" id="kbSay"></div><div class="kb-win" id="kbWin" role="button" aria-label="所長（KT-2）に話しかける"><img src="kt2-loop.jpg" alt="ロボット犬KT-2" id="kbImg"><span class="kb-tag">KT-2 / 所長代理</span></div></div>
 <script>
