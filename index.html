@@ -729,6 +729,9 @@ document.addEventListener('DOMContentLoaded', function(){ setTimeout(hideBootCov
   <div class="lgrid" id="logGrid" style="margin-bottom:2rem;"></div>
   <div style="text-align:center;margin-top:1rem;margin-bottom:0;"><button id="logMoreBtn" style="display:none;font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.2em;color:var(--em2);border:1px solid rgba(0,200,120,.35);background:#fff;padding:.7rem 2rem;border-radius:50px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.08);">+ もっと見る</button></div>
   <script type="application/json" id="logData">[
+    {"url":"https://yorimichi-map-luka-luka.vercel.app/","platform":"NEWS","platformClass":"lc-nt","thumb":"ecamo icon.png","title":"不登校の親子向けサービス「e:camo」がリニューアルしました！","date":"2026.10.22"},
+    {"video":"sony-event.mp4","platform":"NEWS","platformClass":"lc-ev","thumb":"sony-event.jpg","title":"SONYのイベントにロボット犬（KT-2）が参加しました！","date":"2026.10"},
+    {"video":"tgs.mp4","platform":"NEWS","platformClass":"lc-ev","thumb":"tgs.jpg","title":"東京ゲームショウにロボット犬（KT-2）が参加しました！","date":"2026.09.20"},
     {"url":"https://peatix.com/event/5108067","platform":"EVENT","platformClass":"lc-ev","thumb":"tencho icon.jpg","title":"8/6 恵比寿のバーで1日店長 with ロボット犬やります！","date":"2026.08.06"},
     {"url":"https://www.youtube.com","platform":"YOUTUBE","platformClass":"lc-yt","title":"ロボット犬を買ってみた！","date":"2026.08.01"},
     {"url":"https://note.com","platform":"NOTE","platformClass":"lc-nt","title":"不登校の親子向けサービス【e:camo】β版リリース","date":"2026.05.25"},
@@ -738,14 +741,16 @@ document.addEventListener('DOMContentLoaded', function(){ setTimeout(hideBootCov
   (function(){
     var data=JSON.parse(document.getElementById('logData').textContent);
     var grid=document.getElementById('logGrid');
-    var pl={YOUTUBE:'▶ YOUTUBE',NOTE:'◈ NOTE',TIKTOK:'◉ TIKTOK',EVENT:'★ EVENT'};
+    var pl={NEWS:'● NEWS',YOUTUBE:'▶ YOUTUBE',NOTE:'◈ NOTE',TIKTOK:'◉ TIKTOK',EVENT:'★ EVENT'};
     var INIT=3;
     var placeholders=['https://www.youtube.com','https://note.com'];
     function renderCards(items){
       items.forEach(function(item){
         var isPlaceholder=placeholders.indexOf(item.url)!==-1;
-        var a=document.createElement(isPlaceholder?'div':'a');
-        if(isPlaceholder){
+        var a=document.createElement((isPlaceholder||item.video)?'div':'a');
+        if(item.video){
+          a.addEventListener('click',function(){openVideo(item.video,item.thumb);});
+        }else if(isPlaceholder){
           a.addEventListener('click',function(){showPage('coming-soon');});
         }else{
           a.href=item.url;
@@ -841,6 +846,8 @@ document.addEventListener('DOMContentLoaded', function(){ setTimeout(hideBootCov
   <div style="max-width:1100px;margin:0 auto;padding:0 1.5rem 5rem;">
     <div id="robotGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;"></div>
     <script type="application/json" id="robotData">[
+      {"video":"sony-event.mp4","thumb":"sony-event.jpg","date":"2026.10 // EVENT","title":"SONYのイベントにロボット犬（KT-2）が参加しました！"},
+      {"video":"tgs.mp4","thumb":"tgs.jpg","date":"2026.09.20 // EVENT","title":"東京ゲームショウにロボット犬（KT-2）が参加しました！"},
       {"url":"https://www.youtube.com","thumbBg":"linear-gradient(135deg,#5a1010,#8a2020)","thumbIcon":"▶","date":"2024.11 // YOUTUBE","title":"ロボット犬を買ってみた！"}
     ]</script>
   </div>
@@ -1030,6 +1037,9 @@ function closeDanger(){var d=document.getElementById('danger');d.style.opacity='
 var doorClicks=0;
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&isDanger)closeDanger();});
 var lc2=0;document.querySelector('.nav-logo').addEventListener('click',function(){if(++lc2>=5){openDanger();lc2=0;}});
+function openVideo(src,poster){closeVideo();var o=document.createElement('div');o.id='vbox';o.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;z-index:3000;background:rgba(0,10,5,.88);display:flex;align-items:center;justify-content:center;padding:1rem;box-sizing:border-box;';o.innerHTML='<video src="'+src+'" poster="'+(poster||'')+'" controls autoplay playsinline style="max-width:100%;max-height:100%;border-radius:10px;background:#000;"></video><button aria-label="閉じる" style="position:absolute;top:.8rem;right:.8rem;width:2.4rem;height:2.4rem;border-radius:50%;border:none;background:rgba(255,255,255,.92);font-size:1.1rem;cursor:pointer;">✕</button>';o.addEventListener('click',function(e){if(e.target.tagName!=='VIDEO')closeVideo();});document.body.appendChild(o);}
+function closeVideo(){var o=document.getElementById('vbox');if(o){var v=o.querySelector('video');if(v)v.pause();o.remove();}}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeVideo();});
 function showPage(id){var el=document.getElementById('page-'+id);if(!el)return;el.style.display='block';el.scrollTop=0;document.getElementById('nav').style.display='none';document.body.style.overflow='hidden';document.body.style.position='fixed';document.body.style.width='100%';}
 function hidePage(id){var el=document.getElementById('page-'+id);if(!el)return;el.style.display='none';document.getElementById('nav').style.display='';document.body.style.overflow='';document.body.style.position='';document.body.style.width='';}
 var bucketOpen=false;
@@ -1179,7 +1189,7 @@ function collectCards(){bucketOpen=false;bucketHint.textContent='叩いてみて
 
 
 /* log cards rendered in HTML */
-(function(){var el=document.getElementById('robotData'),grid=document.getElementById('robotGrid');if(!el||!grid)return;JSON.parse(el.textContent).forEach(function(item){var isPh=(typeof placeholders!=='undefined')&&placeholders.indexOf(item.url)!==-1;var a=document.createElement(isPh?'div':'a');if(isPh){a.addEventListener('click',function(){showPage('coming-soon');});}else{a.href=item.url;}a.style.cssText='display:flex;flex-direction:column;border:1px solid var(--day-bdr);border-radius:8px;background:#fff;text-decoration:none;color:var(--day-ink);overflow:hidden;cursor:pointer;';var h='<div style="width:100%;aspect-ratio:16/9;background:'+item.thumbBg+';display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:.65;">'+item.thumbIcon+'</div>';h+='<div style="padding:.9rem 1rem;"><p style="font-family:monospace;font-size:.58rem;color:var(--em2);opacity:.5;margin-bottom:.3rem;">'+item.date+'</p><p style="font-family:monospace;font-size:.88rem;line-height:1.5;">'+item.title+'</p></div>';a.innerHTML=h;grid.appendChild(a);});})();
+(function(){var el=document.getElementById('robotData'),grid=document.getElementById('robotGrid');if(!el||!grid)return;JSON.parse(el.textContent).forEach(function(item){var isPh=(typeof placeholders!=='undefined')&&placeholders.indexOf(item.url)!==-1;var a=document.createElement((isPh||item.video)?'div':'a');if(item.video){a.addEventListener('click',function(){openVideo(item.video,item.thumb);});}else if(isPh){a.addEventListener('click',function(){showPage('coming-soon');});}else{a.href=item.url;}a.style.cssText='display:flex;flex-direction:column;border:1px solid var(--day-bdr);border-radius:8px;background:#fff;text-decoration:none;color:var(--day-ink);overflow:hidden;cursor:pointer;';var h=item.thumb?'<div style="width:100%;aspect-ratio:16/9;background:url(\''+item.thumb+'\') center 35%/cover;position:relative;"><span style="position:absolute;right:.7rem;bottom:.7rem;width:2.2rem;height:2.2rem;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.9rem;">▶</span></div>':'<div style="width:100%;aspect-ratio:16/9;background:'+item.thumbBg+';display:flex;align-items:center;justify-content:center;font-size:2rem;opacity:.65;">'+item.thumbIcon+'</div>';h+='<div style="padding:.9rem 1rem;"><p style="font-family:monospace;font-size:.58rem;color:var(--em2);opacity:.5;margin-bottom:.3rem;">'+item.date+'</p><p style="font-family:monospace;font-size:.88rem;line-height:1.5;">'+item.title+'</p></div>';a.innerHTML=h;grid.appendChild(a);});})();
 (function(){var el=document.getElementById('gadgetsData'),grid=document.getElementById('gadgetsGrid');if(!el||!grid)return;JSON.parse(el.textContent).forEach(function(item){var d=document.createElement('div');d.style.cssText='border:1px solid var(--day-bdr);border-radius:10px;overflow:hidden;background:#fff;';var h='<div style="width:100%;aspect-ratio:4/3;background:'+item.thumbBg+';display:flex;align-items:center;justify-content:center;font-size:2.5rem;opacity:.35;">'+item.thumbIcon+'</div>';h+='<div style="padding:.9rem 1rem;"><p style="font-size:.55rem;color:var(--em2);opacity:.5;margin-bottom:.3rem;">'+item.id+' // 準備中</p><p style="font-family:monospace;font-size:.85rem;line-height:1.5;color:var(--day-ink);">'+item.title+'</p><p style="font-size:.78rem;line-height:1.6;color:var(--day-mid);margin-top:.4rem;opacity:.7;">'+item.desc+'</p></div>';d.innerHTML=h;grid.appendChild(d);});})();
 (function(){
   var labels=['// PHASE_04 INITIATION — CLASSIFIED','// NEXT EXPERIMENT — TARGET UNKNOWN','// ████████ — OPERATION PENDING','// SYNCHRONIZATION EVENT — RESTRICTED','// ANOMALY DETECTED — COUNTDOWN ACTIVE'];
